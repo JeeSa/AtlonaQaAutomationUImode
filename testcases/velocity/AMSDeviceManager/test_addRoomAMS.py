@@ -1,0 +1,58 @@
+import time
+
+import pytest
+
+from pages.velocity.DeviceList_Page import DeviceListPage
+from pages.velocity.Home_Page import HomePage
+from pages.velocity.menus.DeviceAddHamburger_Menu import DeviceAddHamburger
+from pages.velocity.menus.LeftBarMenu import LeftBarMenu
+from pages.velocity.popups.AddRoom_popup import AddRoomPopup
+from utilities.utils import Utils
+from selenium.webdriver.support import expected_conditions as EC
+
+
+@pytest.mark.usefixtures("setup")
+class TestAddRoomAMS:
+    def test_addRoomAMS(self):
+
+        # Login to the velocity app
+        ut = Utils(self.driver, self.wait)
+        ut.login()
+
+        homePage = HomePage(self.driver, self.wait)
+        homePage.clickNavBar()
+
+        # Verify if the sidebar is visible
+        assert homePage.visibilityOfSidebarMenu() is True
+
+        leftNav = LeftBarMenu(self.driver, self.wait)
+
+        leftNav.clickManagement()
+        leftNav.clickMng_amsDeviceManager()
+
+        # wait until the destination page is loaded successfully
+        self.wait.until(EC.title_contains("Atlona Devices"))
+
+        assert "Atlona Velocity | Atlona Devices" in self.driver.title
+
+        deviceList = DeviceListPage(self.driver, self.wait)
+        deviceList.clickAddHamburger()
+
+        addHamburger = DeviceAddHamburger(self.driver, self.wait)
+        assert addHamburger.visibilityOfAddHamburgerMenu() is True
+        addHamburger.clickAddRoom()
+
+        addRoomPop = AddRoomPopup(self.driver, self.wait)
+        assert addRoomPop.visibilityOfAddRoom() is True
+        addRoomPop.createRoom("AAA AMS R1")
+        time.sleep(1)
+
+        deviceList.clickExpandBuilding()
+
+        expected_rName = "AAA AMS R1"
+        actual_rName = deviceList.passRoomName()
+
+        assert expected_rName == actual_rName
+
+
+
