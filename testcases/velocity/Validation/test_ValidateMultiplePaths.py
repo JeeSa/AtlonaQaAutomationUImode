@@ -18,6 +18,21 @@ from selenium.webdriver.support import expected_conditions as EC
 
 @pytest.mark.usefixtures("setup")
 class TestValidateMultiplePaths:
+
+    @pytest.fixture(autouse=True)
+    def class_setup(self):
+        self.ut = Utils(self.driver, self.wait)
+        self.home = HomePage(self.driver, self.wait)
+        self.leftNav = LeftBarMenu(self.driver, self.wait)
+        self.roomList = RoomListPage(self.driver, self.wait)
+        self.sites = SitesPage(self.driver, self.wait)
+        self.buildings = BuildingsPage(self.driver, self.wait)
+        self.addImport = AddOrImportPopup(self.driver, self.wait)
+        self.modifyDevices = RoomModifyDevicesPage(self.driver, self.wait)
+        self.roomProblem = RoomProblemReportPage(self.driver, self.wait)
+        self.allDevice = AllDevicesPage(self.driver, self.wait)
+        self.deviceList = DeviceListPage(self.driver, self.wait)
+
     def test_validatePaths2Sites(self):
 
         """Multiple paths to land on the Sites page
@@ -26,56 +41,38 @@ class TestValidateMultiplePaths:
             3.Expand all details of the site > Click on any building or room page > Click on the "All sites" from the breadcrumb"""
 
         # Login to the velocity app
-        ut = Utils(self.driver, self.wait)
-        ut.login()
-
-        homePage = HomePage(self.driver, self.wait)
-
+        self.ut.login()
         # Click on the created site
-        homePage.clickSite()
-
+        self.home.clickSite()
         # wait until the sites page is loaded successfully
         self.wait.until(EC.title_contains("Sites"))
-
         assert "Atlona Velocity | Sites" in self.driver.title
 
-        homePage.clickVelocityLogo()
-
+        self.home.clickVelocityLogo()
         # wait until the login is successful
         self.wait.until(EC.title_contains("Dashboard"))
         # Verify the page after logging into the Velocity App
         assert "Atlona Velocity | Dashboard" in self.driver.title
-
-        homePage.clickSites()
-
+        self.home.clickSites()
         # wait until the sites page is loaded successfully
         self.wait.until(EC.title_contains("Sites"))
-
         assert "Atlona Velocity | Sites" in self.driver.title
 
-        homePage.clickVelocityLogo()
-
+        self.home.clickVelocityLogo()
         # wait until the login is successful
         self.wait.until(EC.title_contains("Dashboard"))
         # Verify the page after logging into the Velocity App
         assert "Atlona Velocity | Dashboard" in self.driver.title
-
-        homePage.clickExpandAll()
+        self.home.clickExpandAll()
         time.sleep(1)
-        homePage.clickBuildingName()
-
+        self.home.clickBuildingName()
         # wait until the room list page is loaded successfully
         self.wait.until(EC.title_contains("Room List"))
-
         assert "Atlona Velocity | Room List" in self.driver.title
 
-        roomList = RoomListPage(self.driver, self.wait)
-
-        roomList.clickAllAitesBreadcrumb()
-
+        self.roomList.clickAllAitesBreadcrumb()
         # wait until the sites page is loaded successfully
         self.wait.until(EC.title_contains("Sites"))
-
         assert "Atlona Velocity | Sites" in self.driver.title
 
     def test_validatePaths2AddBuilding(self):
@@ -84,58 +81,35 @@ class TestValidateMultiplePaths:
             1. Click on the created site from the dashboard > Click on the "add building to site" from the sites page
             2. Click on the view button from the sites page > Click on the orange '+' button from the buildings page"""
 
-        homePage = HomePage(self.driver, self.wait)
-
-        homePage.clickVelocityLogo()
-
+        self.home.clickVelocityLogo()
         # wait until the login is successful
         self.wait.until(EC.title_contains("Dashboard"))
         # Verify the page after logging into the Velocity App
         assert "Atlona Velocity | Dashboard" in self.driver.title
-
-        homePage.clickSites()
-
+        self.home.clickSites()
         # wait until the sites page is loaded successfully
         self.wait.until(EC.title_contains("Sites"))
-
         assert "Atlona Velocity | Sites" in self.driver.title
-
-        sites = SitesPage(self.driver, self.wait)
-
         # Click on the view button
-        sites.clickAddBuilding()
-
+        self.sites.clickAddBuilding()
         # wait until the buildings page is loaded successfully
         self.wait.until(EC.title_contains("Building Add"))
-
         assert "Atlona Velocity | Building Add" in self.driver.title
 
         self.driver.back()
-
         # wait until the sites page is loaded successfully
         self.wait.until(EC.title_contains("Sites"))
-
         assert "Atlona Velocity | Sites" in self.driver.title
-
-        sites.clickView()
-
+        self.sites.clickView()
         # wait until the buildings page is loaded successfully
         self.wait.until(EC.title_contains("Buildings"))
-
         assert "Atlona Velocity | Buildings" in self.driver.title
 
-        buildings = BuildingsPage(self.driver, self.wait)
-
         # Click on the view button
-        buildings.clickAddBuildingButton()
-
-        addImport = AddOrImportPopup(self.driver, self.wait)
-
-        addImport.clickAddViaForm()
-
+        self.buildings.clickAddBuildingButton()
+        self.addImport.clickAddViaForm()
         # wait until the buildings page is loaded successfully
         self.wait.until(EC.title_contains("Building Add"))
-
         assert "Atlona Velocity | Building Add" in self.driver.title
 
     def test_validatePaths2RoomlistOfAnyBuilding(self):
@@ -145,79 +119,54 @@ class TestValidateMultiplePaths:
             2. Expand all details of the site > Click on any building 
             3. Expand all details of the site > Click on any room > Click on the building Name from the breadcrumb"""
 
-        homePage = HomePage(self.driver, self.wait)
-
-        homePage.clickVelocityLogo()
-
+        self.home.clickVelocityLogo()
         # wait until the login is successful
         self.wait.until(EC.title_contains("Dashboard"))
         # Verify the page after logging into the Velocity App
         assert "Atlona Velocity | Dashboard" in self.driver.title
 
-        homePage.clickSites()
-
+        self.home.clickSites()
         # wait until the sites page is loaded successfully
         self.wait.until(EC.title_contains("Sites"))
-
         assert "Atlona Velocity | Sites" in self.driver.title
-
-        sites = SitesPage(self.driver, self.wait)
-        sites.clickView()
-
+        self.sites.clickView()
         # wait until the buildings page is loaded successfully
         self.wait.until(EC.title_contains("Buildings"))
-
         assert "Atlona Velocity | Buildings" in self.driver.title
 
-        buildings = BuildingsPage(self.driver, self.wait)
-
         # Click on the view button
-        buildings.clickViewAllRooms1()
-
+        self.buildings.clickViewAllRooms1()
         # wait until the room list page is loaded successfully
         self.wait.until(EC.title_contains("Room List"))
-
         assert "Atlona Velocity | Room List" in self.driver.title
 
-        homePage.clickVelocityLogo()
-
+        self.home.clickVelocityLogo()
         # wait until the login is successful
         self.wait.until(EC.title_contains("Dashboard"))
         # Verify the page after logging into the Velocity App
         assert "Atlona Velocity | Dashboard" in self.driver.title
-
-        homePage.clickExpandAll()
+        self.home.clickExpandAll()
         time.sleep(1)
-        homePage.clickBuildingName()
-
+        self.home.clickBuildingName()
         # wait until the room list page is loaded successfully
         self.wait.until(EC.title_contains("Room List"))
-
         assert "Atlona Velocity | Room List" in self.driver.title
 
-        homePage.clickVelocityLogo()
-
+        self.home.clickVelocityLogo()
         # wait until the login is successful
         self.wait.until(EC.title_contains("Dashboard"))
         # Verify the page after logging into the Velocity App
         assert "Atlona Velocity | Dashboard" in self.driver.title
-
-        homePage.clickExpandAll()
+        self.home.clickExpandAll()
         time.sleep(1)
-        homePage.clickRoomName()
-
+        self.home.clickRoomName()
         # wait until the room list page is loaded successfully
         self.wait.until(EC.title_contains("Room Modify Devices"))
-
         assert "Atlona Velocity | Room Modify Devices" in self.driver.title
 
-        modifyDevices = RoomModifyDevicesPage(self.driver, self.wait)
-
-        modifyDevices.clickBuildingNameBreadcrumb()
-
+        self.modifyDevices.clickBuildingNameBreadcrumb()
         # wait until the room list page is loaded successfully
         self.wait.until(EC.title_contains("Room List"))
-
         assert "Atlona Velocity | Room List" in self.driver.title
 
     def test_validatePaths2RoomlistOfFullSite(self):
@@ -226,62 +175,43 @@ class TestValidateMultiplePaths:
             2.Click on the left menu > Control > All rooms
             3.Click on the left menu > Scheduling > All rooms"""
 
-        homePage = HomePage(self.driver, self.wait)
-
-        homePage.clickVelocityLogo()
-
+        self.home.clickVelocityLogo()
         # wait until the login is successful
         self.wait.until(EC.title_contains("Dashboard"))
         # Verify the page after logging into the Velocity App
         assert "Atlona Velocity | Dashboard" in self.driver.title
 
-        homePage.clickTotalRooms()
-
+        self.home.clickTotalRooms()
         # wait until the room list page is loaded successfully
         self.wait.until(EC.title_contains("Room List"))
-
         assert "Atlona Velocity | Room List" in self.driver.title
 
-        homePage.clickVelocityLogo()
-
+        self.home.clickVelocityLogo()
         # wait until the login is successful
         self.wait.until(EC.title_contains("Dashboard"))
         # Verify the page after logging into the Velocity App
         assert "Atlona Velocity | Dashboard" in self.driver.title
-
-        homePage.clickNavBar()
-
+        self.home.clickNavBar()
         # Verify if the sidebar is visible
-        assert homePage.visibilityOfSidebarMenu() is True
-
-        leftNav = LeftBarMenu(self.driver, self.wait)
-
-        leftNav.clickControl()
-        leftNav.clickCon_allRooms()
-
+        assert self.home.visibilityOfSidebarMenu() is True
+        self.leftNav.clickControl()
+        self.leftNav.clickCon_allRooms()
         # wait until the destination page is loaded successfully
         self.wait.until(EC.title_contains("Room List"))
-
         assert "Atlona Velocity | Room List" in self.driver.title
 
-        homePage.clickVelocityLogo()
-
+        self.home.clickVelocityLogo()
         # wait until the login is successful
         self.wait.until(EC.title_contains("Dashboard"))
         # Verify the page after logging into the Velocity App
         assert "Atlona Velocity | Dashboard" in self.driver.title
-
-        homePage.clickNavBar()
-
+        self.home.clickNavBar()
         # Verify if the sidebar is visible
-        assert homePage.visibilityOfSidebarMenu() is True
-
-        leftNav.clickScheduling()
-        leftNav.clickSch_allRooms()
-
+        assert self.home.visibilityOfSidebarMenu() is True
+        self.leftNav.clickScheduling()
+        self.leftNav.clickSch_allRooms()
         # wait until the destination page is loaded successfully
         self.wait.until(EC.title_contains("Room List"))
-
         assert "Atlona Velocity | Room List" in self.driver.title
 
     def test_validatePaths2RoomModifyDevice(self):
@@ -293,151 +223,92 @@ class TestValidateMultiplePaths:
             4.Click on the left menu > Reports > All devices > Click on any Room
             5.Click on the left menu > Management > Device Manager > Expand building > hover on Room and click on the HDMI icon """
 
-        homePage = HomePage(self.driver, self.wait)
-
-        homePage.clickVelocityLogo()
-
+        self.home.clickVelocityLogo()
         # wait until the login is successful
         self.wait.until(EC.title_contains("Dashboard"))
         # Verify the page after logging into the Velocity App
         assert "Atlona Velocity | Dashboard" in self.driver.title
 
-        homePage.clickSites()
-
+        self.home.clickSites()
         # wait until the sites page is loaded successfully
         self.wait.until(EC.title_contains("Sites"))
-
         assert "Atlona Velocity | Sites" in self.driver.title
 
-        sites = SitesPage(self.driver, self.wait)
-        sites.clickView()
-
+        self.sites.clickView()
         # wait until the buildings page is loaded successfully
         self.wait.until(EC.title_contains("Buildings"))
-
         assert "Atlona Velocity | Buildings" in self.driver.title
 
-        buildings = BuildingsPage(self.driver, self.wait)
-
         # Click on the view button
-        buildings.clickViewAllRooms1()
-
+        self.buildings.clickViewAllRooms1()
         # wait until the room list page is loaded successfully
         self.wait.until(EC.title_contains("Room List"))
-
         assert "Atlona Velocity | Room List" in self.driver.title
 
-        roomList = RoomListPage(self.driver, self.wait)
-
         # Click on the edit technology button
-        roomList.clickEditTechnology1Button()
-
+        self.roomList.clickEditTechnology1Button()
         # wait until the modify room page is loaded successfully
         self.wait.until(EC.title_contains("Room Modify Devices"))
-
         assert "Atlona Velocity | Room Modify Devices" in self.driver.title
 
-        homePage.clickVelocityLogo()
-
+        self.home.clickVelocityLogo()
         # wait until the login is successful
         self.wait.until(EC.title_contains("Dashboard"))
         # Verify the page after logging into the Velocity App
         assert "Atlona Velocity | Dashboard" in self.driver.title
-
-        homePage.clickExpandAll()
+        self.home.clickExpandAll()
         time.sleep(1)
-        homePage.clickRoomName()
-
+        self.home.clickRoomName()
         # wait until the room list page is loaded successfully
         self.wait.until(EC.title_contains("Room Modify Devices"))
-
         assert "Atlona Velocity | Room Modify Devices" in self.driver.title
 
-        homePage.clickVelocityLogo()
-
+        self.home.clickVelocityLogo()
         # wait until the login is successful
         self.wait.until(EC.title_contains("Dashboard"))
         # Verify the page after logging into the Velocity App
         assert "Atlona Velocity | Dashboard" in self.driver.title
-
-        homePage.clickNavBar()
-
+        self.home.clickNavBar()
         # Verify if the sidebar is visible
-        assert homePage.visibilityOfSidebarMenu() is True
-
-        leftNav = LeftBarMenu(self.driver, self.wait)
-
-        leftNav.clickReports()
-        leftNav.clickRep_roomProblems()
-
+        assert self.home.visibilityOfSidebarMenu() is True
+        self.leftNav.clickReports()
+        self.leftNav.clickRep_roomProblems()
         # wait until the destination page is loaded successfully
         self.wait.until(EC.title_contains("Report Room Problem"))
-
         assert "Atlona Velocity | Report Room Problem" in self.driver.title
 
-        roomProblem = RoomProblemReportPage(self.driver, self.wait)
-
-        roomProblem.clickRoom1()
-
-        assert roomProblem.visibilityOfModifyRoomTech1() is True
-
-        roomProblem.clickModifyRoomTechnology1()
-
+        self.roomProblem.clickRoom1()
+        assert self.roomProblem.visibilityOfModifyRoomTech1() is True
+        self.roomProblem.clickModifyRoomTechnology1()
         # wait until the room list page is loaded successfully
         self.wait.until(EC.title_contains("Room Modify Devices"))
-
         assert "Atlona Velocity | Room Modify Devices" in self.driver.title
 
-        homePage.clickNavBar()
-
+        self.home.clickNavBar()
         # Verify if the sidebar is visible
-        assert homePage.visibilityOfSidebarMenu() is True
-
-        leftNav.clickReports()
-        leftNav.clickRep_allDevices()
-
+        assert self.home.visibilityOfSidebarMenu() is True
+        self.leftNav.clickReports()
+        self.leftNav.clickRep_allDevices()
         # wait until the destination page is loaded successfully
         self.wait.until(EC.title_contains("All Devices"))
-
         assert "Atlona Velocity | All Devices" in self.driver.title
 
-        allDevice = AllDevicesPage(self.driver, self.wait)
-
-        allDevice.clickRoomName()
-
+        self.allDevice.clickRoomName()
         # wait until the room list page is loaded successfully
         self.wait.until(EC.title_contains("Room Modify Devices"))
-
         assert "Atlona Velocity | Room Modify Devices" in self.driver.title
-
-        homePage.clickNavBar()
-
+        self.home.clickNavBar()
         # Verify if the sidebar is visible
-        assert homePage.visibilityOfSidebarMenu() is True
-
-        leftNav.clickManagement()
-        leftNav.clickMng_amsDeviceManager()
-
+        assert self.home.visibilityOfSidebarMenu() is True
+        self.leftNav.clickManagement()
+        self.leftNav.clickMng_amsDeviceManager()
         # wait until the destination page is loaded successfully
         self.wait.until(EC.title_contains("Atlona Devices"))
-
         assert "Atlona Velocity | Atlona Devices" in self.driver.title
 
-        deviceList = DeviceListPage(self.driver, self.wait)
-
-        deviceList.clickExpandBuilding()
-        deviceList.hoverRoomDiv()
-        deviceList.clickHDMI1()
-
+        self.deviceList.clickExpandBuilding()
+        self.deviceList.hoverRoomDiv()
+        self.deviceList.clickHDMI1()
         # wait until the room list page is loaded successfully
         self.wait.until(EC.title_contains("Room Modify Devices"))
-
         assert "Atlona Velocity | Room Modify Devices" in self.driver.title
-
-
-
-
-
-
-
-

@@ -23,173 +23,137 @@ from selenium.webdriver.support import expected_conditions as EC
 
 @pytest.mark.usefixtures("setup")
 class TestValidateHamburgerMenus:
+
+    @pytest.fixture(autouse=True)
+    def class_setup(self):
+        self.ut = Utils(self.driver, self.wait)
+        self.home = HomePage(self.driver, self.wait)
+        self.widget = WidgetSettingPopup(self.driver, self.wait)
+        self.leftNav = LeftBarMenu(self.driver, self.wait)
+        self.deviceList = DeviceListPage(self.driver, self.wait)
+        self.addHamburger = DeviceAddHamburger(self.driver, self.wait)
+        self.addSitePop = AddSitePopup(self.driver, self.wait)
+        self.addBuildingPop = AddBuildingPopup(self.driver, self.wait)
+        self.addRoomPop = AddRoomPopup(self.driver, self.wait)
+        self.toolsHamburger = DeviceToolsHamburger(self.driver, self.wait)
+        self.scanPop = ScanNetworkPopup(self.driver, self.wait)
+        self.deviceListSettingsPop = DeviceListSettingsPopup(self.driver, self.wait)
+        self.credsMassUpdatePop = CredentialsMassUpdatePopup(self.driver, self.wait)
+        self.firmwarePop = FirmwarePopup(self.driver, self.wait)
+        self.alertsPop = AlertsPopup(self.driver, self.wait)
+        self.deleteAllUnassignedPop = DeleteAllUnassignedPopup(self.driver, self.wait)
+        self.roomList = RoomListPage(self.driver, self.wait)
+        self.flrHamburger = FloorHamburgerMenu(self.driver, self.wait)
+
     def test_validateDashboardSettings(self):
         # Case 1: Validate the dashboard widget customization settings
 
         # Login to the velocity app
-        ut = Utils(self.driver, self.wait)
-        ut.login()
-
-        homePage = HomePage(self.driver, self.wait)
+        self.ut.login()
         # Click on the created site
-        homePage.clickWidgetHamburger()
-
-        widget = WidgetSettingPopup(self.driver, self.wait)
-
+        self.home.clickWidgetHamburger()
         # Verify if the added technology is visible
-        assert widget.visibilityOfWidgetSettingPopup() is True
-        widget.clickClose()
-
+        assert self.widget.visibilityOfWidgetSettingPopup() is True
+        self.widget.clickClose()
 
     def test_validateAddDeviceList(self):
         # Case 2: Validate the Left(add) hamburger menu from the device list page
 
-        homePage = HomePage(self.driver, self.wait)
-        homePage.clickNavBar()
-
+        self.home.clickNavBar()
         # Verify if the sidebar is visible
-        assert homePage.visibilityOfSidebarMenu() is True
-
-        leftNav = LeftBarMenu(self.driver, self.wait)
-
-        leftNav.clickManagement()
-        leftNav.clickMng_amsDeviceManager()
-
+        assert self.home.visibilityOfSidebarMenu() is True
+        self.leftNav.clickManagement()
+        self.leftNav.clickMng_amsDeviceManager()
         # wait until the destination page is loaded successfully
         self.wait.until(EC.title_contains("Atlona Devices"))
-
         assert "Atlona Velocity | Atlona Devices" in self.driver.title
 
-        deviceList = DeviceListPage(self.driver, self.wait)
-        deviceList.clickAddHamburger()
+        self.deviceList.clickAddHamburger()
+        assert self.addHamburger.visibilityOfAddHamburgerMenu() is True
+        self.addHamburger.clickAddSite()
+        assert self.addSitePop.visibilityOfAddSitePage() is True
+        self.addSitePop.clickCancel()
 
-        addHamburger = DeviceAddHamburger(self.driver, self.wait)
-        assert addHamburger.visibilityOfAddHamburgerMenu() is True
-        addHamburger.clickAddSite()
+        self.deviceList.clickAddHamburger()
+        assert self.addHamburger.visibilityOfAddHamburgerMenu() is True
+        self.addHamburger.clickAddBuilding()
+        assert self.addBuildingPop.visibilityOfAddBuilding() is True
+        self.addBuildingPop.clickCancel()
 
-        addSitePop = AddSitePopup(self.driver, self.wait)
-        assert addSitePop.visibilityOfAddSitePage() is True
-        addSitePop.clickCancel()
-
-        deviceList.clickAddHamburger()
-        assert addHamburger.visibilityOfAddHamburgerMenu() is True
-        addHamburger.clickAddBuilding()
-
-        addBuildingPop = AddBuildingPopup(self.driver, self.wait)
-        assert addBuildingPop.visibilityOfAddBuilding() is True
-        addBuildingPop.clickCancel()
-
-        deviceList.clickAddHamburger()
-        assert addHamburger.visibilityOfAddHamburgerMenu() is True
-        addHamburger.clickAddRoom()
-
-        addRoomPop = AddRoomPopup(self.driver, self.wait)
-        assert addRoomPop.visibilityOfAddRoom() is True
-        addRoomPop.clickCancel()
+        self.deviceList.clickAddHamburger()
+        assert self.addHamburger.visibilityOfAddHamburgerMenu() is True
+        self.addHamburger.clickAddRoom()
+        assert self.addRoomPop.visibilityOfAddRoom() is True
+        self.addRoomPop.clickCancel()
 
     def test_validateToolsDeviceList(self):
-        # Case 2: Validate the Right(tools) hamburger menu from the device list page
+        # Case 3: Validate the Right(tools) hamburger menu from the device list page
 
         assert "Atlona Velocity | Atlona Devices" in self.driver.title
+        self.deviceList.clickToolsHamburger()
+        assert self.toolsHamburger.visibilityOfToolsHamburgerMenu() is True
+        self.toolsHamburger.clickScan()
+        assert self.scanPop.visibilityOfScanPopup() is True
+        self.scanPop.clickClose()
 
-        deviceList = DeviceListPage(self.driver, self.wait)
-        deviceList.clickToolsHamburger()
+        self.deviceList.clickToolsHamburger()
+        assert self.toolsHamburger.visibilityOfToolsHamburgerMenu() is True
+        self.toolsHamburger.clickDeviceListSettings()
+        assert self.deviceListSettingsPop.visibilityOfDeviceListSettingsPop() is True
+        self.deviceListSettingsPop.clickClose()
 
-        toolsHamburger = DeviceToolsHamburger(self.driver, self.wait)
-        assert toolsHamburger.visibilityOfToolsHamburgerMenu() is True
-        toolsHamburger.clickScan()
+        self.deviceList.clickToolsHamburger()
+        assert self.toolsHamburger.visibilityOfToolsHamburgerMenu() is True
+        self.toolsHamburger.clickCredentialsMassUpdate()
+        assert self.credsMassUpdatePop.visibilityOfCredsMassUpdatePop() is True
+        self.credsMassUpdatePop.clickClose()
 
-        scanPop = ScanNetworkPopup(self.driver, self.wait)
-        assert scanPop.visibilityOfScanPopup() is True
-        scanPop.clickClose()
+        self.deviceList.clickToolsHamburger()
+        assert self.toolsHamburger.visibilityOfToolsHamburgerMenu() is True
+        self.toolsHamburger.clickFirmware()
+        assert self.firmwarePop.visibilityOfFirmwarePop() is True
+        self.firmwarePop.clickClose()
 
-        deviceList.clickToolsHamburger()
-        assert toolsHamburger.visibilityOfToolsHamburgerMenu() is True
-        toolsHamburger.clickDeviceListSettings()
+        self.deviceList.clickToolsHamburger()
+        assert self.toolsHamburger.visibilityOfToolsHamburgerMenu() is True
+        self.toolsHamburger.clickAlerts()
+        assert self.alertsPop.visibilityOfAlertsPop() is True
+        self.alertsPop.clickCancel()
 
-        deviceListSettingsPop = DeviceListSettingsPopup(self.driver, self.wait)
-        assert deviceListSettingsPop.visibilityOfDeviceListSettingsPop() is True
-        deviceListSettingsPop.clickClose()
+        self.deviceList.clickToolsHamburger()
+        assert self.toolsHamburger.visibilityOfToolsHamburgerMenu() is True
+        self.toolsHamburger.clickDeleteAllUnassigned()
+        assert self.deleteAllUnassignedPop.visibilityOfDeleteAllUnassignedPop() is True
+        self.deleteAllUnassignedPop.clickCancel()
 
-        deviceList.clickToolsHamburger()
-        assert toolsHamburger.visibilityOfToolsHamburgerMenu() is True
-        toolsHamburger.clickCredentialsMassUpdate()
-
-        credsMassUpdatePop = CredentialsMassUpdatePopup(self.driver, self.wait)
-        assert credsMassUpdatePop.visibilityOfCredsMassUpdatePop() is True
-        credsMassUpdatePop.clickClose()
-
-        deviceList.clickToolsHamburger()
-        assert toolsHamburger.visibilityOfToolsHamburgerMenu() is True
-        toolsHamburger.clickFirmware()
-
-        firmwarePop = FirmwarePopup(self.driver, self.wait)
-        assert firmwarePop.visibilityOfFirmwarePop() is True
-        firmwarePop.clickClose()
-
-        deviceList.clickToolsHamburger()
-        assert toolsHamburger.visibilityOfToolsHamburgerMenu() is True
-        toolsHamburger.clickAlerts()
-
-        alertsPop = AlertsPopup(self.driver, self.wait)
-        assert alertsPop.visibilityOfAlertsPop() is True
-        alertsPop.clickCancel()
-
-        deviceList.clickToolsHamburger()
-        assert toolsHamburger.visibilityOfToolsHamburgerMenu() is True
-        toolsHamburger.clickDeleteAllUnassigned()
-
-        deleteAllUnassignedPop = DeleteAllUnassignedPopup(self.driver, self.wait)
-        assert deleteAllUnassignedPop.visibilityOfDeleteAllUnassignedPop() is True
-        deleteAllUnassignedPop.clickCancel()
-
-        deviceList.clickToolsHamburger()
-        assert toolsHamburger.visibilityOfExportAll() is True
+        self.deviceList.clickToolsHamburger()
+        assert self.toolsHamburger.visibilityOfExportAll() is True
 
     def test_validateFloorHamburgerMenu(self):
-        # Case 2: Validate the Left(add) hamburger menu from the device list page
+        # Case 4: Validate the floor hamburger menu from the room list page
 
-        homePage = HomePage(self.driver, self.wait)
-        homePage.clickNavBar()
-
+        self.home.clickNavBar()
         # Verify if the sidebar is visible
-        assert homePage.visibilityOfSidebarMenu() is True
-
-        leftNav = LeftBarMenu(self.driver, self.wait)
-        leftNav.clickControl()
-        leftNav.clickCon_allRooms()
-
+        assert self.home.visibilityOfSidebarMenu() is True
+        self.leftNav.clickControl()
+        self.leftNav.clickCon_allRooms()
         # wait until the destination page is loaded successfully
         self.wait.until(EC.title_contains("Room List"))
-
         assert "Atlona Velocity | Room List" in self.driver.title
 
-        roomList = RoomListPage(self.driver, self.wait)
         # Click on the more option button
-        roomList.clickMoreButton1()
-
-        flrHamburger = FloorHamburgerMenu(self.driver, self.wait)
-
-        assert flrHamburger.visibilityOfAddRoom() is True
-        assert flrHamburger.visibilityOfAddMeetingRoom() is True
-        assert flrHamburger.visibilityOfAddMultipleRooms() is True
-        assert flrHamburger.visibilityOfImportRoom() is True
-        assert flrHamburger.visibilityOfAddNewFloor() is True
-        assert flrHamburger.visibilityOfEditFloor() is True
-        assert flrHamburger.visibilityOfCopyFloor() is True
-        assert flrHamburger.visibilityOfExportFloor() is True
-        assert flrHamburger.visibilityOfImportFloor() is True
-        assert flrHamburger.visibilityOfDeleteFloor() is True
-        assert flrHamburger.visibilityOfReorderRooms() is True
-        assert flrHamburger.visibilityOfAllMacros() is True
-        assert flrHamburger.visibilityOfAllDevices() is True
-
-
-
-
-
-
-
-
-
+        self.roomList.clickMoreButton1()
+        assert self.flrHamburger.visibilityOfAddRoom() is True
+        assert self.flrHamburger.visibilityOfAddMeetingRoom() is True
+        assert self.flrHamburger.visibilityOfAddMultipleRooms() is True
+        assert self.flrHamburger.visibilityOfImportRoom() is True
+        assert self.flrHamburger.visibilityOfAddNewFloor() is True
+        assert self.flrHamburger.visibilityOfEditFloor() is True
+        assert self.flrHamburger.visibilityOfCopyFloor() is True
+        assert self.flrHamburger.visibilityOfExportFloor() is True
+        assert self.flrHamburger.visibilityOfImportFloor() is True
+        assert self.flrHamburger.visibilityOfDeleteFloor() is True
+        assert self.flrHamburger.visibilityOfReorderRooms() is True
+        assert self.flrHamburger.visibilityOfAllMacros() is True
+        assert self.flrHamburger.visibilityOfAllDevices() is True
 
