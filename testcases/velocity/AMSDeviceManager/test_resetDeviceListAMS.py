@@ -13,58 +13,36 @@ from selenium.webdriver.support import expected_conditions as EC
 
 @pytest.mark.usefixtures("setup")
 class TestResetDeviceListAMS:
+    @pytest.fixture(autouse=True)
+    def class_setup(self):
+        self.ut = Utils(self.driver, self.wait)
+        self.home = HomePage(self.driver, self.wait)
+        self.leftNav = LeftBarMenu(self.driver, self.wait)
+        self.deviceList = DeviceListPage(self.driver, self.wait)
+        self.toolsHamburger = DeviceToolsHamburger(self.driver, self.wait)
+        self.deviceListSettingsPop = DeviceListSettingsPopup(self.driver, self.wait)
+
     def test_reset_deviceListAMS(self):
-        # Case 1: using the cross icon
 
         # Login to the velocity app
-        ut = Utils(self.driver, self.wait)
-        ut.login()
-
-        homePage = HomePage(self.driver, self.wait)
-        homePage.clickNavBar()
-
+        self.ut.login()
+        self.home.clickNavBar()
         # Verify if the sidebar is visible
-        assert homePage.visibilityOfSidebarMenu() is True
-
-        leftNav = LeftBarMenu(self.driver, self.wait)
-
-        leftNav.clickManagement()
-        leftNav.clickMng_amsDeviceManager()
-
+        assert self.home.visibilityOfSidebarMenu() is True
+        self.leftNav.clickManagement()
+        self.leftNav.clickMng_amsDeviceManager()
         # wait until the destination page is loaded successfully
         self.wait.until(EC.title_contains("Atlona Devices"))
-
         assert "Atlona Velocity | Atlona Devices" in self.driver.title
 
-        deviceList = DeviceListPage(self.driver, self.wait)
-
         defaultHeaders = ['', 'Status\narrow_drop_down', 'Category\narrow_drop_down', 'Title\narrow_drop_down', 'IP Address\narrow_drop_down', 'MAC Address\narrow_drop_down', 'Version\narrow_drop_down', 'Site\narrow_drop_down', 'Building\narrow_drop_down', 'Room\narrow_drop_down']
+        self.deviceList.clickToolsHamburger()
+        assert self.toolsHamburger.visibilityOfToolsHamburgerMenu() is True
+        self.toolsHamburger.clickDeviceListSettings()
+        assert self.deviceListSettingsPop.visibilityOfDeviceListSettingsPop() is True
 
-        deviceList.clickToolsHamburger()
-
-        toolsHamburger = DeviceToolsHamburger(self.driver, self.wait)
-        assert toolsHamburger.visibilityOfToolsHamburgerMenu() is True
-
-        toolsHamburger.clickDeviceListSettings()
-
-        deviceListSettingsPop = DeviceListSettingsPopup(self.driver, self.wait)
-        assert deviceListSettingsPop.visibilityOfDeviceListSettingsPop() is True
-
-        deviceListSettingsPop.clickReset()
-        deviceListSettingsPop.clickSave()
+        self.deviceListSettingsPop.clickReset()
+        self.deviceListSettingsPop.clickSave()
         time.sleep(1)
-
-        resetedHeaders = deviceList.passTableHeader()
-
+        resetedHeaders = self.deviceList.passTableHeader()
         assert defaultHeaders == resetedHeaders
-
-
-
-
-
-
-
-
-
-
-
