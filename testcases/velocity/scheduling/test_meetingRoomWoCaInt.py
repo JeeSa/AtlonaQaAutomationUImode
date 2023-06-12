@@ -2,6 +2,8 @@ import time
 
 import pytest
 
+from pages.velocity.popups.Information_popup import InformationPopup
+from pages.velocity.sites.AddRoom_Page import AddRoomPage
 from pages.velocity.sites.Buildings_Page import BuildingsPage
 from pages.velocity.Home_Page import HomePage
 from pages.velocity.menus.FloorHamburger_Menu import FloorHamburgerMenu
@@ -12,7 +14,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 @pytest.mark.usefixtures("setup")
-class TestCopyFloor:
+class TestAddMeetingRoomWithoutCaInt:
 
     @pytest.fixture(autouse=True)
     def class_setup(self):
@@ -22,8 +24,10 @@ class TestCopyFloor:
         self.buildings = BuildingsPage(self.driver, self.wait)
         self.roomList = RoomListPage(self.driver, self.wait)
         self.flrHamburger = FloorHamburgerMenu(self.driver, self.wait)
+        self.addRoom = AddRoomPage(self.driver, self.wait)
+        self.infoPop = InformationPopup(self.driver, self.wait)
 
-    def test_copyFloor(self):
+    def test_addMeetingRoomWithoutCaInt(self):
 
         # Login to the velocity app
         self.ut.login()
@@ -32,7 +36,6 @@ class TestCopyFloor:
         # wait until the page is loaded successfully
         self.wait.until(EC.title_contains("Sites"))
         assert "Atlona Velocity | Sites" in self.driver.title
-
         # Click on the view button
         self.sites.clickView()
         # wait until the page is loaded successfully
@@ -44,16 +47,14 @@ class TestCopyFloor:
         self.wait.until(EC.title_contains("Room List"))
         assert "Atlona Velocity | Room List" in self.driver.title
 
-        # Click on the more button
+        # Click on the more option button
         self.roomList.clickMoreButton1()
         time.sleep(2)
-        # Click on the Copy floor option
-        self.flrHamburger.clickCopyFloor()
-        time.sleep(2)
-        # wait until the page is loaded successfully
-        self.wait.until(EC.title_contains("Room List"))
-        assert "Atlona Velocity | Room List" in self.driver.title
-        # Verify if the copied floor is visible
-        assert self.roomList.visibilityOfFloor2() is True
-
+        expected_message = "Please go to the calendar integration page and setup a calendar integration"
+        # Click on the add new room option
+        self.flrHamburger.clickAddMeetingRoom()
+        time.sleep(1)
+        actual_message = self.infoPop.passContent()
+        # Check whether the appropriate message is showing or not
+        assert expected_message == actual_message
 

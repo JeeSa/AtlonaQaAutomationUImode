@@ -6,7 +6,7 @@ from pages.velocity.Home_Page import HomePage
 from pages.velocity.popups.Confirm_popup import ConfirmPopup
 from pages.velocity.sites.AddRoom_Page import AddRoomPage
 from pages.velocity.sites.Buildings_Page import BuildingsPage
-from pages.velocity.sites.FloorHamburger_Menu import FloorHamburgerMenu
+from pages.velocity.menus.FloorHamburger_Menu import FloorHamburgerMenu
 from pages.velocity.sites.RoomList_Page import RoomListPage
 from pages.velocity.sites.RoomModifyDevices_Page import RoomModifyDevicesPage
 from pages.velocity.sites.Sites_Page import SitesPage

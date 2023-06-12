@@ -15,7 +15,7 @@ from pages.velocity.popups.DeviceListSettings_popup import DeviceListSettingsPop
 from pages.velocity.popups.Firmware_popup import FirmwarePopup
 from pages.velocity.popups.ScanNetwork_popup import ScanNetworkPopup
 from pages.velocity.popups.WidgetSettings_popup import WidgetSettingPopup
-from pages.velocity.sites.FloorHamburger_Menu import FloorHamburgerMenu
+from pages.velocity.menus.FloorHamburger_Menu import FloorHamburgerMenu
 from pages.velocity.sites.RoomList_Page import RoomListPage
 from utilities.utils import Utils
 from selenium.webdriver.support import expected_conditions as EC

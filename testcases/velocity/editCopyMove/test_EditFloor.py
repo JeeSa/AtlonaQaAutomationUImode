@@ -5,7 +5,7 @@ import pytest
 from pages.velocity.Home_Page import HomePage
 from pages.velocity.sites.Buildings_Page import BuildingsPage
 from pages.velocity.sites.EditFloor_Page import EditFloorPage
-from pages.velocity.sites.FloorHamburger_Menu import FloorHamburgerMenu
+from pages.velocity.menus.FloorHamburger_Menu import FloorHamburgerMenu
 from pages.velocity.sites.RoomList_Page import RoomListPage
 from pages.velocity.sites.Sites_Page import SitesPage
 from utilities.utils import Utils

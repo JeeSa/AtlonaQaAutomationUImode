@@ -2,7 +2,7 @@ import time
 
 import pytest
 
-from pages.velocity.CalendarIntegrationList_Page import CalendarIntegrationListPage
+from pages.velocity.scheduling.CalendarIntegrationList_Page import CalendarIntegrationListPage
 from pages.velocity.menus.UserSettings_Menu import UserSettingMenu
 from pages.velocity.Home_Page import HomePage
 from pages.velocity.menus.LeftBarMenu import LeftBarMenu
