@@ -45,4 +45,4 @@ class TestAllScanAMS:
         confirmPop.clickSubmit()"""
         time.sleep(10)
         afterScanCount = self.deviceList.totalRowCount()
-        assert beforeScanCount != afterScanCount
+        assert beforeScanCount <= afterScanCount

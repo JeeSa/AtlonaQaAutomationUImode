@@ -14,7 +14,7 @@ class ProfileTab:
     EMAIL_FIELD = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div[2]/div/div[1]/div[1]/div/div/div/div[1]/input"
     PROFILE_HELP = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div[1]/div/div[1]/button[3]/div/div/span/a"
     FIRST_NAME = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div[2]/div/div[1]/div[1]/div/div/div/div[2]/input"
-    SAVE_CHANGES_1 = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div[2]/div/div[1]/div[1]/div/div/div/div[8]/button"
+    SAVE_CHANGES_1 = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div[2]/div/div[1]/div[1]/div/div/div/div[6]/button"
     SAVE_SUCCESS = "/html/body/div[1]/footer/div/div/div[1]/div/div"
     FIRST_NAME_DIV = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div[2]/div/div[1]/div[1]/div/div/div/div[2]/div[1]"
 

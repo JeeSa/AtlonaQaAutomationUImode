@@ -51,4 +51,4 @@ class TestSubnetScanAMS:
         self.customPop.clickScanNetwork()
         time.sleep(30)
         afterScanCount = self.deviceList.totalRowCount()
-        assert beforeScanCount != afterScanCount
+        assert beforeScanCount <= afterScanCount

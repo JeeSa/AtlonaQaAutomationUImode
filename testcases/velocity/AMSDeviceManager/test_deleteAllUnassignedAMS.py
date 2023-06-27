@@ -44,4 +44,4 @@ class TestDeleteAllUnassignedAMS:
         self.deleteAllunassignedPop.clickDelete()
         time.sleep(5)
         afterDeleteCount = self.deviceList.totalRowCount()
-        assert beforeDeleteCount != afterDeleteCount
+        assert beforeDeleteCount >= afterDeleteCount

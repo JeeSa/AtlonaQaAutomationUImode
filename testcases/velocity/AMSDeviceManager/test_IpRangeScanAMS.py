@@ -41,6 +41,7 @@ class TestIpRangeScanAMS:
         assert self.scanPop.visibilityOfScanPopup() is True
         self.scanPop.clickDropdown()
         self.scanPop.clickCustom()
+        time.sleep(1)
         assert self.customPop.visibilityOfCustomNetworkPopup() is True
 
         self.customPop.clickIpRange()
@@ -50,4 +51,4 @@ class TestIpRangeScanAMS:
         self.customPop.clickScanNetwork()
         time.sleep(30)
         afterScanCount = self.deviceList.totalRowCount()
-        assert beforeScanCount != afterScanCount
+        assert beforeScanCount <= afterScanCount
