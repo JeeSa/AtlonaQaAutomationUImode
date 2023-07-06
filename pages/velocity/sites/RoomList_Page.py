@@ -29,6 +29,7 @@ class RoomListPage:
     ALL_SITES_BREADCRUMB = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div[1]/div[2]/span/div/span[4]/ol/li[1]/a"
     FLOOR1_NAME = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div[2]/div/div[1]/div/div[1]/div[2]/span/span[1]"
     ROOM1_NAME = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div[2]/div/div[1]/div/div[2]/div/div/div/div[1]/div/h4"
+    VIEW_MEETING_1 = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div[2]/div/div[1]/div/div[2]/div/div/div/div[1]/div/div[2]/span/button"
 
     # Get the location of view button
     def getEditTechnology1Button(self):
@@ -338,3 +339,12 @@ class RoomListPage:
     def passRoomName(self):
         roomName = self.getRoomName().text
         return roomName
+
+    # Get the location of view button
+    def getViewMeeting1(self):
+        self.driver.implicitly_wait(10)
+        return self.driver.find_element(By.XPATH, self.VIEW_MEETING_1)
+
+    # Click on the User Dropdown
+    def clickViewMeeting1(self):
+        self.getViewMeeting1().click()

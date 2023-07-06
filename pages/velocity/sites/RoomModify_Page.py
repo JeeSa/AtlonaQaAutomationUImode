@@ -14,6 +14,7 @@ class RoomModifyPage:
     ROOM_MODIFY_HELP = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div[1]/div[2]/span/div/span[3]/a"
     NAME = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div[2]/div/div/div/div/div/div[1]/div/span/span/div/input"
     SAVE_CHANGES = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div[2]/div/div/div/div/div/div[3]/button"
+    SAVE_FOR_MEETING_ROOM = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div[2]/div/div/div/div/div/div[4]/button/div/div"
     EDIT_SUCCESS_POPUP = "/html/body/div[1]/footer/div/div/div[1]/div/div"
 
     # Get Login Button
@@ -63,9 +64,10 @@ class RoomModifyPage:
         return self.driver.find_element(By.XPATH, self.NAME)
 
     # Click on the User Dropdown
-    def enterRoomName(self, floor_name):
+    def enterRoomName(self, ro_name):
+        self.driver.execute_script("arguments[0].scrollIntoView()", self.getRoomName())
         self.driver.implicitly_wait(10)
-        self.getRoomName().send_keys(floor_name)
+        self.getRoomName().send_keys(ro_name)
 
     # Clear Site name Field
     def clearRoomName(self):
@@ -75,20 +77,34 @@ class RoomModifyPage:
         self.getRoomName().send_keys(Keys.DELETE)
 
     # Get the location of view button
-    def getSave(self):
+    def getSaveMeeting(self):
         self.driver.implicitly_wait(10)
-        return self.driver.find_element(By.XPATH, self.SAVE_CHANGES)
+        return self.driver.find_element(By.XPATH, self.SAVE_FOR_MEETING_ROOM)
 
     # Click on the User Dropdown
-    def clickSave(self):
-        self.driver.execute_script("arguments[0].scrollIntoView()", self.getSave())
+    def clickSaveMeeting(self):
+        self.driver.execute_script("arguments[0].scrollIntoView()", self.getSaveMeeting())
         self.driver.implicitly_wait(10)
-        self.getSave().click()
+        self.getSaveMeeting().click()
 
     # Get the location of added floor
     def getEditSuccess(self):
         self.driver.implicitly_wait(10)
         return self.driver.find_element(By.XPATH, self.EDIT_SUCCESS_POPUP)
+
+    # Create new Room
+    def createMeetingRoom(self, ro_name):
+        # clear floor name
+        self.clearRoomName()
+        time.sleep(1)
+
+        # Provide floor name
+        self.enterRoomName(ro_name)
+        time.sleep(1)
+
+        # submit the floor name
+        self.clickSaveMeeting()
+
 
     # Visibility of delete success
     def visibilityOfEditSuccessPopup(self):
