@@ -5,7 +5,7 @@ import pytest
 from pages.velocity.DeviceList_Page import DeviceListPage
 from pages.velocity.Home_Page import HomePage
 from pages.velocity.menus.DeviceAddHamburger_Menu import DeviceAddHamburger
-from pages.velocity.menus.LeftBarMenu import LeftBarMenu
+from pages.velocity.menus.LeftBar_Menu import LeftBarMenu
 from pages.velocity.popups.AddSite_popup import AddSitePopup
 from utilities.utils import Utils
 from selenium.webdriver.support import expected_conditions as EC

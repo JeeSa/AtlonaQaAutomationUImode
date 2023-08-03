@@ -4,7 +4,7 @@ import pytest
 
 from pages.velocity.popups.About_popup import AboutPopup
 from pages.velocity.Home_Page import HomePage
-from pages.velocity.menus.LeftBarMenu import LeftBarMenu
+from pages.velocity.menus.LeftBar_Menu import LeftBarMenu
 from pages.velocity.settings.Cloud_tab import CloudTab
 from pages.velocity.settings.Database_tab import DatabaseTab
 from pages.velocity.settings.Email_tab import EmailTab

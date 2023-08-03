@@ -4,8 +4,8 @@ import pytest
 
 from pages.velocity.DeviceList_Page import DeviceListPage
 from pages.velocity.Home_Page import HomePage
-from pages.velocity.menus.DeviceToolsHamburger import DeviceToolsHamburger
-from pages.velocity.menus.LeftBarMenu import LeftBarMenu
+from pages.velocity.menus.DeviceToolsHamburger_Menu import DeviceToolsHamburger
+from pages.velocity.menus.LeftBar_Menu import LeftBarMenu
 from pages.velocity.popups.DeleteAllUnassigned import DeleteAllUnassignedPopup
 from utilities.utils import Utils
 from selenium.webdriver.support import expected_conditions as EC

@@ -3,8 +3,8 @@ import pytest
 from pages.velocity.DeviceList_Page import DeviceListPage
 from pages.velocity.Home_Page import HomePage
 from pages.velocity.menus.DeviceAddHamburger_Menu import DeviceAddHamburger
-from pages.velocity.menus.DeviceToolsHamburger import DeviceToolsHamburger
-from pages.velocity.menus.LeftBarMenu import LeftBarMenu
+from pages.velocity.menus.DeviceToolsHamburger_Menu import DeviceToolsHamburger
+from pages.velocity.menus.LeftBar_Menu import LeftBarMenu
 from pages.velocity.popups.AddBuilding_popup import AddBuildingPopup
 from pages.velocity.popups.AddRoom_popup import AddRoomPopup
 from pages.velocity.popups.AddSite_popup import AddSitePopup

@@ -5,7 +5,7 @@ import pytest
 from pages.velocity.DeviceList_Page import DeviceListPage
 from pages.velocity.Home_Page import HomePage
 from pages.velocity.RoomProblemReport_Page import RoomProblemReportPage
-from pages.velocity.menus.LeftBarMenu import LeftBarMenu
+from pages.velocity.menus.LeftBar_Menu import LeftBarMenu
 from pages.velocity.popups.AddOrImport_popup import AddOrImportPopup
 from pages.velocity.reportSections.AllDevices_Page import AllDevicesPage
 from pages.velocity.sites.Buildings_Page import BuildingsPage

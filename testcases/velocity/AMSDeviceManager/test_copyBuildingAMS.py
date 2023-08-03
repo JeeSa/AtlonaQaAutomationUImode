@@ -4,7 +4,7 @@ import pytest
 
 from pages.velocity.DeviceList_Page import DeviceListPage
 from pages.velocity.Home_Page import HomePage
-from pages.velocity.menus.LeftBarMenu import LeftBarMenu
+from pages.velocity.menus.LeftBar_Menu import LeftBarMenu
 from pages.velocity.popups.CopyBuildingAMS_popup import CopyBuildingPopup
 from pages.velocity.popups.EditBuildingAMS_popup import EditBuildingPopup
 from utilities.utils import Utils

@@ -3,7 +3,7 @@ import time
 import pytest
 
 from pages.velocity.Home_Page import HomePage
-from pages.velocity.menus.LeftBarMenu import LeftBarMenu
+from pages.velocity.menus.LeftBar_Menu import LeftBarMenu
 from pages.velocity.reportSections.AllDevices_Page import AllDevicesPage
 from utilities.utils import Utils
 from selenium.webdriver.support import expected_conditions as EC

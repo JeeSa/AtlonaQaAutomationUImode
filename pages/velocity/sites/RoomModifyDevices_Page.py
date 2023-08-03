@@ -18,7 +18,7 @@ class RoomModifyDevicesPage:
     DEVICE_2 = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div/div/div[2]/div/span/span[1]/div[2]/div"
     BUILDING_NAME_BREADCRUMB = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div/div/div[1]/div/div[1]/div[2]/span/div/span[2]/ol/li[3]/a"
     DEVICE1_NAME = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div/div/div[2]/div/span/span[1]/div/div/div[1]/div/h4"
-
+    CUSTOM_UI_DESIGNER = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div/div/div[2]/div/span/span[1]/div/div/div[1]/div/span/table/tr/td/ul/li[2]/button"
 
     # Get the location of add technology button
     def getAddTechnologyButton(self):
@@ -110,3 +110,11 @@ class RoomModifyDevicesPage:
         deviceName = self.getDeviceName().text
         return deviceName
 
+    # Get Login Button
+    def getCustomUI(self):
+        self.driver.implicitly_wait(10)
+        return self.driver.find_element(By.XPATH, self.CUSTOM_UI_DESIGNER)
+
+    # Click on the Login button
+    def clickCustomUI(self):
+        self.getCustomUI().click()

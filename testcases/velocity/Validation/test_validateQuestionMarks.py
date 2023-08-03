@@ -5,7 +5,7 @@ import pytest
 from pages.velocity.scheduling.CalendarIntegrationList_Page import CalendarIntegrationListPage
 from pages.velocity.menus.UserSettings_Menu import UserSettingMenu
 from pages.velocity.Home_Page import HomePage
-from pages.velocity.menus.LeftBarMenu import LeftBarMenu
+from pages.velocity.menus.LeftBar_Menu import LeftBarMenu
 from pages.velocity.security.Login_Page import LoginPage
 from pages.velocity.settings.Cloud_tab import CloudTab
 from pages.velocity.settings.Database_tab import DatabaseTab

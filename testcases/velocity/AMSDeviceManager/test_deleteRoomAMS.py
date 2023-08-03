@@ -2,7 +2,7 @@ import pytest
 
 from pages.velocity.DeviceList_Page import DeviceListPage
 from pages.velocity.Home_Page import HomePage
-from pages.velocity.menus.LeftBarMenu import LeftBarMenu
+from pages.velocity.menus.LeftBar_Menu import LeftBarMenu
 from pages.velocity.popups.DeleteConfirmAMS_popup import DeleteConfirmAMSPopup
 from pages.velocity.popups.EditRoomAMS_popup import EditRoomPopup
 from utilities.utils import Utils
