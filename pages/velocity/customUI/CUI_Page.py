@@ -16,6 +16,8 @@ class CUIPage:
     PAGE_3_OPTIONS = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[2]/div[2]/div[2]/div/div[3]/div/span/span"
     LAUNCH_CONTROL = "//span[contains(text(),'touch_app')]"
     ROOM_TECHNOLOGY = "//span[contains(text(),'settings_input_hdmi')]"
+    VARIABLES = "//span[contains(text(),'code')]"
+    ROOM_OPTION = "//span[contains(text(),'tune')]"
 
     # Get the location of add technology button
     def getAddPageButton(self):
@@ -77,3 +79,21 @@ class CUIPage:
     # Click on the add technology button
     def clickRoomTechnology(self):
         self.getRoomTechnology().click()
+
+    # Get the location of add technology button
+    def getVariables(self):
+        self.driver.implicitly_wait(10)
+        return self.driver.find_element(By.XPATH, self.VARIABLES)
+
+    # Click on the add technology button
+    def clickVariables(self):
+        self.getVariables().click()
+
+    # Get the location of add technology button
+    def getRoomOption(self):
+        self.driver.implicitly_wait(10)
+        return self.driver.find_element(By.XPATH, self.ROOM_OPTION)
+
+    # Click on the add technology button
+    def clickRoomOption(self):
+        self.getRoomOption().click()
