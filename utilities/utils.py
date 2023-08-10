@@ -21,4 +21,3 @@ class Utils:
         self.wait.until(EC.title_contains("Dashboard"))
         # Verify the page after logging into the Velocity App
         assert "Atlona Velocity | Dashboard" in self.driver.title
-
