@@ -71,7 +71,7 @@ class TestScheduleMeetingForDiffRoom:
             if new_window != main_window:
                 self.driver.switch_to.window(new_window)
 
-                self.wait.until(EC.title_contains("Room Control"))
+                self.wait.until(EC.title_contains("Control"))
                 assert "New Test Meeting Room Control" in self.driver.title
                 time.sleep(1)
 
