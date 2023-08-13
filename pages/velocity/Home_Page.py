@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class HomePage:
@@ -42,6 +43,14 @@ class HomePage:
     def getCreatedSite(self):
         self.driver.implicitly_wait(10)
         return self.driver.find_element(By.XPATH, self.CREATED_SITE)
+
+    # Visibility of add site page
+    def visibilityOfCreatedSite(self):
+        self.driver.implicitly_wait(10)
+        if self.getCreatedSite().is_displayed():
+            return True
+        else:
+            return False
 
     # Click on the created site
     def clickSite(self):
@@ -129,3 +138,20 @@ class HomePage:
     # Click on the User Dropdown
     def clickTotalRooms(self):
         self.getTotalRooms().click()
+
+    def navToSitesPage(self):
+        # wait until the login is successful
+        self.wait.until(EC.title_contains("Dashboard"))
+        # Verify the page after logging into the Velocity App
+        assert "Atlona Velocity | Dashboard" in self.driver.title
+
+        self.clickSite()
+        # wait until the page is loaded successfully
+        self.wait.until(EC.title_contains("Sites"))
+        assert "Atlona Velocity | Sites" in self.driver.title
+
+    def navToDashboard(self):
+        self.clickVelocityLogo()
+        # wait until the page is loaded successfully
+        self.wait.until(EC.title_contains("Dashboard"))
+        assert "Atlona Velocity | Dashboard" in self.driver.title

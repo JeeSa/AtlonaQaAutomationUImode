@@ -10,7 +10,7 @@ class RoomModifyDevicesPage:
 
     # Locators
     ADD_TECHNOLOGY_BUTTON = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div/div/div[1]/div/div[1]/div[3]/span/button[3]"
-    DEVICE_1 = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div/div/div[2]/div/span/span[1]/div/div"
+    DEVICE_1 = "//h4[contains(text(),'Atlona Velocity 8\" Touch Panel - Black 1')]"
     BUILDING_BREADCRUMB = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div/div/div[1]/div/div[1]/div[2]/span/div/span[2]/ol/li[3]/a"
     EDIT_ROOM_DEVICES = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div/div/div[2]/div/span/span[1]/div/div/div[1]/div/span/table/tr/td/ul/li[1]/button"
     COPY_ROOM_DEVICE = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div/div/div[2]/div/span/span[1]/div/div/div[1]/div/span/table/tr/td/ul/li[3]/button"

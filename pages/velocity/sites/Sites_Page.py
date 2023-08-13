@@ -156,3 +156,24 @@ class SitesPage:
         siteName = self.getSiteName().text
         return siteName
 
+    def navToBuildingsPage(self):
+        # wait until the page is loaded successfully
+        self.wait.until(EC.title_contains("Sites"))
+        assert "Atlona Velocity | Sites" in self.driver.title
+
+        # Click on the view button
+        self.clickView()
+        # wait until the page is loaded successfully
+        self.wait.until(EC.title_contains("Buildings"))
+        assert "Atlona Velocity | Buildings" in self.driver.title
+
+    def navToAddBuildingPageFromSitesPage(self):
+        # wait until the page is loaded successfully
+        self.wait.until(EC.title_contains("Sites"))
+        assert "Atlona Velocity | Sites" in self.driver.title
+
+        # Click on the add building button
+        self.clickAddBuilding()
+        # wait until the page is loaded successfully
+        self.wait.until(EC.title_contains("Building Add"))
+        assert "Atlona Velocity | Building Add" in self.driver.title

@@ -12,16 +12,20 @@ class BuildingsPage:
     # Locators
     VIEW_ROOMS1_BUTTON = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div[2]/div/div[1]/div/div/div[1]/div/div/div/div[2]/span/button"
     VIEW_ROOMS2_BUTTON = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div[2]/div/div[1]/div/div/div[2]/div/div/div/div[2]/span/button"
+    VIEW_ROOMS3_BUTTON = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div[2]/div/div[1]/div/div/div[3]/div/div/div/div[2]/span/button"
+
     ADD_BUILDING_BUTTON = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div[2]/div/div[3]/div[1]/button"
+    DELETE_BUILDING1_BUTTON = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div[2]/div/div[1]/div/div/div/div/div/div/div[3]/span[4]/button"
     DELETE_BUILDING2_BUTTON = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div[2]/div/div[1]/div/div/div[2]/div/div/div/div[3]/span[4]/button"
     DELETE_SUCCESS_POPUP = "/html/body/div[1]/footer/div/div/div[1]/div/div"
+
     EDIT_BUILDING1_BUTTON = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div[2]/div/div[1]/div/div/div/div/div/div/div[3]/span[1]/button"
     COPY_BUILDING1_BUTTON = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div[2]/div/div[1]/div/div/div/div/div/div/div[3]/span[2]/button"
     EXPORT_BUILDING1_BUTTON = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div[2]/div/div[1]/div/div/div/div/div/div/div[3]/span[3]/button"
-    DELETE_BUILDING1_BUTTON = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div[2]/div/div[1]/div/div/div/div/div/div/div[3]/span[4]/button"
+
     BUILDINGS_HELP = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div[1]/div[2]/span/div/span[3]/a"
     COPY_SUCCESS_POPUP = "/html/body/div[1]/footer/div/div/div[1]/div/div"
-    VIEW_ROOMS3_BUTTON = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div[2]/div/div[1]/div/div/div[3]/div/div/div/div[2]/span/button"
+
     BUILDING_NAME = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div[2]/div/div[1]/div/div/div/div/div/div/h4"
 
     # Get the location of view button 1
@@ -241,3 +245,36 @@ class BuildingsPage:
     def passBuildingName(self):
         buildingName = self.getBuildingName().text
         return buildingName
+
+    def navToRoomListOfBuilding1(self):
+        # wait until the page is loaded successfully
+        self.wait.until(EC.title_contains("Buildings"))
+        assert "Atlona Velocity | Buildings" in self.driver.title
+
+        # Click on the view button
+        self.clickViewAllRooms1()
+        # wait until the page is loaded successfully
+        self.wait.until(EC.title_contains("Room List"))
+        assert "Atlona Velocity | Room List" in self.driver.title
+
+    def navToRoomListOfBuilding2(self):
+        # wait until the page is loaded successfully
+        self.wait.until(EC.title_contains("Buildings"))
+        assert "Atlona Velocity | Buildings" in self.driver.title
+
+        # Click on the view button
+        self.clickViewAllRooms2()
+        # wait until the page is loaded successfully
+        self.wait.until(EC.title_contains("Room List"))
+        assert "Atlona Velocity | Room List" in self.driver.title
+
+    def navToRoomListOfBuilding3(self):
+        # wait until the page is loaded successfully
+        self.wait.until(EC.title_contains("Buildings"))
+        assert "Atlona Velocity | Buildings" in self.driver.title
+
+        # Click on the view button
+        self.clickViewAllRooms3()
+        # wait until the page is loaded successfully
+        self.wait.until(EC.title_contains("Room List"))
+        assert "Atlona Velocity | Room List" in self.driver.title

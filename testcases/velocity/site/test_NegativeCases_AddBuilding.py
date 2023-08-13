@@ -25,17 +25,11 @@ class TestNegativeCasesAddBuilding:
         # Login to the velocity app
 
         self.ut.login()
-        # Click on the created site
-        self.home.clickSite()
-        # wait until the sites page is loaded successfully
-        self.wait.until(EC.title_contains("Sites"))
-        assert "Atlona Velocity | Sites" in self.driver.title
+        # Navigate to sites page
+        self.home.navToSitesPage()
+        # Navigate to Add building page from the sites page
+        self.sites.navToAddBuildingPageFromSitesPage()
 
-        # Click on the add building button
-        self.sites.clickAddBuilding()
-        # wait until the sites page is loaded successfully
-        self.wait.until(EC.title_contains("Building Add"))
-        assert "Atlona Velocity | Building Add" in self.driver.title
         # Click on create building
         self.addBuildingForm.clickCreateBuilding()
         assert "Atlona Velocity | Building Add" in self.driver.title
