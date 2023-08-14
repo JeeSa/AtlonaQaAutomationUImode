@@ -177,3 +177,15 @@ class SitesPage:
         # wait until the page is loaded successfully
         self.wait.until(EC.title_contains("Building Add"))
         assert "Atlona Velocity | Building Add" in self.driver.title
+
+    def navToSiteModifyPage(self):
+        # wait until the page is loaded successfully
+        self.wait.until(EC.title_contains("Sites"))
+        assert "Atlona Velocity | Sites" in self.driver.title
+
+        # Click on the add building button
+        self.clickEditButton()
+        # wait until the page is loaded successfully
+        self.wait.until(EC.title_contains("Site Modify"))
+        assert "Atlona Velocity | Site Modify" in self.driver.title
+

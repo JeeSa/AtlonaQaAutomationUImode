@@ -21,22 +21,10 @@ class TestCopyBuilding:
 
         # Login to the velocity app
         self.ut.login()
-        # Click on the created site
-        self.home.clickSite()
-        # wait until the page is loaded successfully
-        self.wait.until(EC.title_contains("Sites"))
-        assert "Atlona Velocity | Sites" in self.driver.title
-
-        # Click on the view button
-        self.sites.clickView()
-        # wait until the page is loaded successfully
-        self.wait.until(EC.title_contains("Buildings"))
-        assert "Atlona Velocity | Buildings" in self.driver.title
-        # Click on the view button
-        self.buildings.clickCopyBuilding1()
-        # wait until the page is loaded successfully
-        self.wait.until(EC.title_contains("Buildings"))
-        assert "Atlona Velocity | Buildings" in self.driver.title
-        # Verify if the copied building is visible
-        assert self.buildings.visibilityOfViewRooms2Button() is True
+        # Navigate to sites page
+        self.home.navToSitesPage()
+        # Navigate to Buildings Page
+        self.sites.navToBuildingsPage()
+        # Copy a building
+        self.buildings.copyBuilding()
 

@@ -27,23 +27,12 @@ class TestMoveFloor:
 
         # Login to the velocity app
         self.ut.login()
-        # Click on the created site
-        self.home.clickSite()
-        # wait until the sites page is loaded successfully
-        self.wait.until(EC.title_contains("Sites"))
-        assert "Atlona Velocity | Sites" in self.driver.title
-
-        # Click on the view button
-        self.sites.clickView()
-        # wait until the buildings page is loaded successfully
-        self.wait.until(EC.title_contains("Buildings"))
-        assert "Atlona Velocity | Buildings" in self.driver.title
-
-        # Click on the view button
-        self.buildings.clickViewAllRooms1()
-        # wait until the room list page is loaded successfully
-        self.wait.until(EC.title_contains("Room List"))
-        assert "Atlona Velocity | Room List" in self.driver.title
+        # Navigate to sites page
+        self.home.navToSitesPage()
+        # Navigate to Buildings Page
+        self.sites.navToBuildingsPage()
+        # Navigate to Room list page of 1st Building
+        self.buildings.navToRoomListOfBuilding1()
 
         # Click on the more option button
         self.roomList.clickMoveDown()

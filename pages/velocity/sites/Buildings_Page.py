@@ -278,3 +278,24 @@ class BuildingsPage:
         # wait until the page is loaded successfully
         self.wait.until(EC.title_contains("Room List"))
         assert "Atlona Velocity | Room List" in self.driver.title
+
+    def navToBuildingModifyPage(self):
+        # wait until the page is loaded successfully
+        self.wait.until(EC.title_contains("Buildings"))
+        assert "Atlona Velocity | Buildings" in self.driver.title
+
+        # Click on the edit button
+        self.clickEditBuilding1()
+        # wait until the page is loaded successfully
+        self.wait.until(EC.title_contains("Building Modify"))
+        assert "Atlona Velocity | Building Modify" in self.driver.title
+
+    def copyBuilding(self):
+        # Click on the view button
+        self.clickCopyBuilding1()
+        # wait until the page is loaded successfully
+        self.wait.until(EC.title_contains("Buildings"))
+        assert "Atlona Velocity | Buildings" in self.driver.title
+        # Verify if the copied building is visible
+        assert self.visibilityOfViewRooms2Button() is True
+

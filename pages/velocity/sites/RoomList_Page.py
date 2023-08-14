@@ -361,3 +361,15 @@ class RoomListPage:
         # wait until the modify room page is loaded successfully
         self.wait.until(EC.title_contains("Room Modify Devices"))
         assert "Atlona Velocity | Room Modify Devices" in self.driver.title
+
+    def navToRoomModifyPage(self):
+        # wait until the page is loaded successfully
+        self.wait.until(EC.title_contains("Room List"))
+        assert "Atlona Velocity | Room List" in self.driver.title
+
+        # Click on the more option button
+        self.clickEditRoom1Button()
+        # wait until the page is loaded successfully
+        self.wait.until(EC.title_contains("Room Modify"))
+        assert "Atlona Velocity | Room Modify" in self.driver.title
+

@@ -77,6 +77,17 @@ class RoomModifyPage:
         self.getRoomName().send_keys(Keys.DELETE)
 
     # Get the location of view button
+    def getSaveChanges(self):
+        self.driver.implicitly_wait(10)
+        return self.driver.find_element(By.XPATH, self.SAVE_CHANGES)
+
+    # Click on the User Dropdown
+    def clickSaveChanges(self):
+        self.driver.execute_script("arguments[0].scrollIntoView()", self.getSaveChanges())
+        self.driver.implicitly_wait(10)
+        self.getSaveChanges().click()
+
+    # Get the location of view button
     def getSaveMeeting(self):
         self.driver.implicitly_wait(10)
         return self.driver.find_element(By.XPATH, self.SAVE_FOR_MEETING_ROOM)

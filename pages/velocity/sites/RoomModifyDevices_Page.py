@@ -1,6 +1,7 @@
 import time
 
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class RoomModifyDevicesPage:
@@ -118,3 +119,18 @@ class RoomModifyDevicesPage:
     # Click on the Login button
     def clickCustomUI(self):
         self.getCustomUI().click()
+
+    def copyRoomDevice(self):
+        # wait until the modify room page is loaded successfully
+        self.wait.until(EC.title_contains("Room Modify Devices"))
+        assert "Atlona Velocity | Room Modify Devices" in self.driver.title
+
+        # Click on the Copy device option
+        self.clickCopyDevice()
+        time.sleep(1)
+        # wait until the page is loaded successfully
+        self.wait.until(EC.title_contains("Room Modify Devices"))
+        assert "Atlona Velocity | Room Modify Devices" in self.driver.title
+        # Verify if the copied device is visible
+        assert self.visibilityOfDevice_2() is True
+

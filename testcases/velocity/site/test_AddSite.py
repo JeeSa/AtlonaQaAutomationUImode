@@ -28,7 +28,7 @@ class TestAddSite:
         self.driver.refresh()
         time.sleep(1)
         # Create a new site
-        self.ut.addSite()
+        self.ut.addSite("Atlona", "Atlona Incorporated", "70 Daggett Drive", "San Jose", "95134")
 
         # Navigate to sites page
         self.home.navToSitesPage()
