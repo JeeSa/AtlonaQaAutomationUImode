@@ -301,3 +301,10 @@ class Utils:
         assert "Atlona Velocity | Room List" in self.driver.title
         # Verify if the copied is visible
         assert roomList.visibilityOfRoom2() is True
+
+    def openNavBar(self):
+        home = HomePage(self.driver, self.wait)
+
+        home.clickNavBar()
+        # Verify if the sidebar is visible
+        assert home.visibilityOfSidebarMenu() is True

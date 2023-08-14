@@ -24,7 +24,6 @@ class TestAddDevices:
 
         # Login to the velocity app
         self.ut.login()
-        # Click on the created site
         # Navigate to sites page
         self.home.navToSitesPage()
         # Navigate to Buildings Page

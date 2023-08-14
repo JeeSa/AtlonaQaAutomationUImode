@@ -41,188 +41,188 @@ class TestLeftNavigationMenu:
 
         # Login to the velocity app
         self.ut.login()
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Control > All rooms
         self.leftNav.clickControl()
         self.leftNav.clickCon_allRooms()
         # wait until the destination page is loaded successfully
         self.wait.until(EC.title_contains("Room List"))
         assert "Atlona Velocity | Room List" in self.driver.title
 
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Control > Device Drivers
         self.leftNav.clickControl()
         self.leftNav.clickCon_deviceDrivers()
         # wait until the destination page is loaded successfully
         self.wait.until(EC.title_contains("Equipment List"))
         assert "Atlona Velocity | Equipment List" in self.driver.title
 
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Control > Device Groups
         self.leftNav.clickControl()
         self.leftNav.clickCon_deviceGroups()
         # wait until the destination page is loaded successfully
         self.wait.until(EC.title_contains("Device Group List"))
         assert "Atlona Velocity | Device Group List" in self.driver.title
 
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Scheduling > All Rooms
         self.leftNav.clickScheduling()
         self.leftNav.clickSch_allRooms()
         # wait until the destination page is loaded successfully
         self.wait.until(EC.title_contains("Room List"))
         assert "Atlona Velocity | Room List" in self.driver.title
 
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Scheduling > Scheduling Templates
         self.leftNav.clickScheduling()
         self.leftNav.clickSch_schedulingTemplates()
         # wait until the destination page is loaded successfully
         self.wait.until(EC.title_contains("Scheduling Templates"))
         assert "Atlona Velocity | Scheduling Templates" in self.driver.title
 
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Scheduling > Manage
         self.leftNav.clickScheduling()
         self.leftNav.clickSch_manage()
         # wait until the destination page is loaded successfully
         self.wait.until(EC.title_contains("Calendar Integration List"))
         assert "Atlona Velocity | Calendar Integration List" in self.driver.title
 
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Scheduling > All Room Scheduling
         self.leftNav.clickScheduling()
         self.leftNav.clickSch_allRoomSchedule()
         # wait until the destination page is loaded successfully
         self.wait.until(EC.title_contains("Meeting Schedule for all Rooms"))
         assert "Atlona Velocity | Meeting Schedule for all Rooms" in self.driver.title
 
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Management > Device Manager
         self.leftNav.clickManagement()
         self.leftNav.clickMng_amsDeviceManager()
         # wait until the destination page is loaded successfully
         self.wait.until(EC.title_contains("Atlona Devices"))
         assert "Atlona Velocity | Atlona Devices" in self.driver.title
 
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Management > Room Support Tickets
         self.leftNav.clickManagement()
         self.leftNav.clickMng_roomSupportTickets()
         # wait until the destination page is loaded successfully
         self.wait.until(EC.title_contains("Help Tickets"))
         assert "Atlona Velocity | Help Tickets" in self.driver.title
 
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Reports > All Devices
         self.leftNav.clickReports()
         self.leftNav.clickRep_allDevices()
         # wait until the destination page is loaded successfully
         self.wait.until(EC.title_contains("All Devices"))
         assert "Atlona Velocity | All Devices" in self.driver.title
 
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Reports > All Macros
         self.leftNav.clickReports()
         self.leftNav.clickRep_allMacros()
         # wait until the destination page is loaded successfully
         self.wait.until(EC.title_contains("All Macros"))
         assert "Atlona Velocity | All Macros" in self.driver.title
 
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Reports > Bill Of Materials
         self.leftNav.clickReports()
         self.leftNav.clickRep_billOfMaterials()
         # wait until the destination page is loaded successfully
         self.wait.until(EC.title_contains("Bill Of Materials"))
         assert "Atlona Velocity | Bill Of Materials" in self.driver.title
 
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Reports > Room Problems
         self.leftNav.clickReports()
         self.leftNav.clickRep_roomProblems()
         # wait until the destination page is loaded successfully
         self.wait.until(EC.title_contains("Report Room Problem"))
         assert "Atlona Velocity | Report Room Problem" in self.driver.title
 
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Settings > Gateway
         self.leftNav.clickSettings()
         self.leftNav.clickSet_gateway()
         assert self.gateway.visibilityOfGatewayTab() is True
 
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Settings > Database
         self.leftNav.clickSettings()
         self.leftNav.clickSet_database()
         assert self.database.visibilityOfDatabaseTab() is True
 
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Settings > Licenses
         self.leftNav.clickSettings()
         self.leftNav.clickSet_licenses()
         assert self.licenses.visibilityOfLicensesTab() is True
 
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Settings > Tools
         self.leftNav.clickSettings()
         self.leftNav.clickSet_tools()
         assert self.tools.visibilityOfToolsTab() is True
 
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Settings > Email
         self.leftNav.clickSettings()
         self.leftNav.clickSet_email()
         assert self.email.visibilityOfEmailTab() is True
 
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Settings > Security
         self.leftNav.clickSettings()
         self.leftNav.clickSet_security()
         assert self.security.visibilityOfSecurityTab() is True
 
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Settings > Room Support
         self.leftNav.clickSettings()
         self.leftNav.clickSet_roomSupport()
         assert self.roomSupport.visibilityOfRoomSupportTab() is True
 
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Settings > Network
         self.leftNav.clickSettings()
         self.leftNav.clickSet_network()
         assert self.network.visibilityOfAllNetworksTab() is True
 
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Cloud
         self.leftNav.clickCloud()
         assert self.cloud.visibilityOfCloudTab() is True
 
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Home
         self.leftNav.clickPinIcon()
         self.leftNav.clickHome()
         # wait until the destination page is loaded successfully
@@ -235,6 +235,7 @@ class TestLeftNavigationMenu:
         main_window = self.driver.current_window_handle
         # Check we don't have other windows open already
         assert len(self.driver.window_handles) == 1
+        # Click Help > Manual
         self.leftNav.clickHelp()
         self.leftNav.clickHlp_manual()
         # Wait for the new window or tab
@@ -257,6 +258,7 @@ class TestLeftNavigationMenu:
 
         # Verify if the sidebar is visible
         assert self.home.visibilityOfSidebarMenu() is True
+        # Click Help > Training
         self.leftNav.clickHlp_training()
         # Wait for the new window or tab
         self.wait.until(EC.number_of_windows_to_be(2))
@@ -278,6 +280,7 @@ class TestLeftNavigationMenu:
 
         # Verify if the sidebar is visible
         assert self.home.visibilityOfSidebarMenu() is True
+        # Click Help > Videos
         self.leftNav.clickHlp_videos()
         # Wait for the new window or tab
         self.wait.until(EC.number_of_windows_to_be(2))
@@ -299,6 +302,7 @@ class TestLeftNavigationMenu:
 
         # Verify if the sidebar is visible
         assert self.home.visibilityOfSidebarMenu() is True
+        # Click Help > Support
         self.leftNav.clickHlp_support()
         # Wait for the new window or tab
         self.wait.until(EC.number_of_windows_to_be(2))
@@ -320,6 +324,7 @@ class TestLeftNavigationMenu:
         assert len(self.driver.window_handles) == 1
         # Verify if the sidebar is visible
         assert self.home.visibilityOfSidebarMenu() is True
+        # Click Help > FAQs
         self.leftNav.clickHlp_faqs()
         # Wait for the new window or tab
         self.wait.until(EC.number_of_windows_to_be(2))
@@ -343,6 +348,7 @@ class TestLeftNavigationMenu:
 
         # Verify if the sidebar is visible
         assert self.home.visibilityOfSidebarMenu() is True
+        # Click Help > About
         self.leftNav.clickHlp_about()
         assert self.about.visibilityOfAboutPopup() is True
         self.about.clickCancel()
