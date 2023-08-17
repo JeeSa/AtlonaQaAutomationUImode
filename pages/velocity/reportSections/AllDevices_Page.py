@@ -21,7 +21,7 @@ class AllDevicesPage:
     EDIT_BUTTON = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[2]/table/tbody/tr[1]/td[9]"
     IP_INPUT = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[2]/table/tbody/tr[1]/td[2]/input"
     SAVE_BUTTON = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[2]/table/tbody/tr[1]/td[10]/span/div/button"
-    IP_ADDRESS = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[2]/table/tbody/tr[1]/td[2]"
+    IP_ADDRESS = "//td[contains(text(),'192.110.173.90')]"
     ROOM_NAME = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[2]/table/tbody/tr[1]/td[8]/span/a"
 
     # Get Username field
