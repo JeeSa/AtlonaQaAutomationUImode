@@ -64,16 +64,13 @@ class TestValidateQuestionMarks:
         self.login.validateLoginHelp()
         # Verify the page after launching the Velocity App
         assert "Atlona Velocity | Login To The System" in self.driver.title
-        self.login.validateSyncHelp()
-        # Verify the page after launching the Velocity App
-        assert "Atlona Velocity | Login To The System" in self.driver.title
         self.login.validateForgotPassHelp()
 
         # Login to the velocity app
         self.ut.login()
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Control > All rooms
         self.leftNav.clickControl()
         self.leftNav.clickCon_allRooms()
         time.sleep(1)
@@ -86,9 +83,9 @@ class TestValidateQuestionMarks:
         self.roomList.validateFloor1Help()
         assert "Atlona Velocity | Room List" in self.driver.title
 
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Scheduling > Manage
         self.leftNav.clickScheduling()
         self.leftNav.clickSch_manage()
         time.sleep(1)
@@ -98,9 +95,9 @@ class TestValidateQuestionMarks:
         self.clIntLst.validateClIntLstHelp()
         assert "Atlona Velocity | Calendar Integration List" in self.driver.title
 
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Settings > Gateway
         self.leftNav.clickSettings()
         self.leftNav.clickSet_gateway()
         time.sleep(1)
@@ -108,9 +105,9 @@ class TestValidateQuestionMarks:
         self.gateway.validateGatewayHelp()
         assert self.gateway.visibilityOfGatewayTab() is True
 
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Settings > Database
         self.leftNav.clickSettings()
         self.leftNav.clickSet_database()
         time.sleep(1)
@@ -119,9 +116,9 @@ class TestValidateQuestionMarks:
         self.database.validateDatabaseHelp()
         assert self.database.visibilityOfDatabaseTab() is True
 
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Settings > Licenses
         self.leftNav.clickSettings()
         self.leftNav.clickSet_licenses()
         time.sleep(1)
@@ -133,9 +130,9 @@ class TestValidateQuestionMarks:
         self.licenses.validateActSetHelp()
         assert self.licenses.visibilityOfLicensesTab() is True
 
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Settings > Tools
         self.leftNav.clickSettings()
         self.leftNav.clickSet_tools()
         time.sleep(1)
@@ -144,9 +141,9 @@ class TestValidateQuestionMarks:
         self.tools.validateToolsHelp()
         assert self.tools.visibilityOfToolsTab() is True
 
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Settings > Email
         self.leftNav.clickSettings()
         self.leftNav.clickSet_email()
         time.sleep(1)
@@ -155,9 +152,9 @@ class TestValidateQuestionMarks:
         self.email.validateEmailHelp()
         assert self.email.visibilityOfEmailTab() is True
 
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Settings > Security
         self.leftNav.clickSettings()
         self.leftNav.clickSet_security()
         time.sleep(1)
@@ -166,9 +163,9 @@ class TestValidateQuestionMarks:
         self.security.validateSecurityHelp()
         assert self.security.visibilityOfSecurityTab() is True
 
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Settings > Network
         self.leftNav.clickSettings()
         self.leftNav.clickSet_network()
         time.sleep(1)
@@ -177,9 +174,9 @@ class TestValidateQuestionMarks:
         self.network.validateNetworkHelp()
         assert self.network.visibilityOfAllNetworksTab() is True
 
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Cloud
         self.leftNav.clickCloud()
         assert self.cloud.visibilityOfCloudTab() is True
         time.sleep(1)
@@ -222,32 +219,22 @@ class TestValidateQuestionMarks:
         self.rolesTab.validateRolesHelp()
         assert "Atlona Velocity | Role List" in self.driver.title
 
-        self.home.clickVelocityLogo()
-        # wait until the login is successful
-        self.wait.until(EC.title_contains("Dashboard"))
-        # Verify the page after logging into the Velocity App
-        assert "Atlona Velocity | Dashboard" in self.driver.title
+        self.home.navToDashboard()
         # Click on the created site
-        self.home.clickSite()
-        # wait until the sites page is loaded successfully
-        self.wait.until(EC.title_contains("Sites"))
-        assert "Atlona Velocity | Sites" in self.driver.title
+        self.home.navToSitesPage()
+        # validate sites help
         self.sites.validateSitesHelp()
         assert "Atlona Velocity | Sites" in self.driver.title
 
         # Click on the view button
-        self.sites.clickView()
-        # wait until the buildings page is loaded successfully
-        self.wait.until(EC.title_contains("Buildings"))
-        assert "Atlona Velocity | Buildings" in self.driver.title
+        self.sites.navToBuildingsPage()
+        # validate buildings help
         self.buildings.validateBuildingsHelp()
         assert "Atlona Velocity | Buildings" in self.driver.title
 
         # Click on the view button
-        self.buildings.clickViewAllRooms1()
-        # wait until the room list page is loaded successfully
-        self.wait.until(EC.title_contains("Room List"))
-        assert "Atlona Velocity | Room List" in self.driver.title
+        self.buildings.navToRoomListOfBuilding1()
+        # navigate to room modify page
         self.roomList.clickEditRoom1Button()
         # wait until the room list page is loaded successfully
         self.wait.until(EC.title_contains("Room Modify"))
