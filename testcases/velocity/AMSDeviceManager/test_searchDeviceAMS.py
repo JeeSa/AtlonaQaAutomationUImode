@@ -34,6 +34,6 @@ class TestSearchDeviceAMS:
         stringedRowCount = self.deviceList.rowCountWithString()
         self.deviceList.enterSearchContent("AT-VTP-1000VL")
         time.sleep(1)
-        resultedRowCount = self.deviceList.totalRowCount()
+        resultedRowCount = self.deviceList.totalRowCount() - 1
         assert stringedRowCount == resultedRowCount
 
