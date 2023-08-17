@@ -16,7 +16,7 @@ class LoginPage:
     LOGIN_BUTTON = "loginbutton"
     LOGIN_HELP = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[2]/div/h1/a"
     SYNC_HELP = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[2]/div/div/span[1]/span/a"
-    FORGOT_PASSWORD_HELP = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[2]/div/div/span[2]/span/span/a[2]"
+    FORGOT_PASSWORD_HELP = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[3]/div/div/span[2]/span/span/a[2]"
 
     # Get Username field
     def getUsername(self):
