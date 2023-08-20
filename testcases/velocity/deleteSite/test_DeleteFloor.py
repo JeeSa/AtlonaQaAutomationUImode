@@ -29,32 +29,15 @@ class TestDeleteFloor:
 
         # Login to the velocity app
         self.ut.login()
-        # Click on the created site
-        self.home.clickSite()
-        # wait until the page is loaded successfully
-        self.wait.until(EC.title_contains("Sites"))
-        assert "Atlona Velocity | Sites" in self.driver.title
-
-        # Click on the view button
-        self.sites.clickView()
-        # wait until the page is loaded successfully
-        self.wait.until(EC.title_contains("Buildings"))
-        assert "Atlona Velocity | Buildings" in self.driver.title
-        # Click on the view button
-        self.buildings.clickViewAllRooms1()
-        # wait until the page is loaded successfully
-        self.wait.until(EC.title_contains("Room List"))
-        assert "Atlona Velocity | Room List" in self.driver.title
-
-        # Click on the more option button
-        self.roomList.clickMoreButton1()
-        # Click on the delete floor button
-        self.flrHamburger.clickDeleteFloor()
-        # Verify if the confirmation popup is visible
-        assert self.confirm.visibilityOfConfirmPopup() is True
-        self.confirm.clickSubmit()
-        time.sleep(1)
-        # Verify if the delete success popup is visible
-        assert self.roomList.visibilityOfDeleteSuccessPopup() is True
+        # Navigate to sites page
+        self.home.navToSitesPage()
+        # Navigate to Buildings Page
+        self.sites.navToBuildingsPage()
+        # Navigate to Room list page of 1st Building
+        self.buildings.navToRoomListOfBuilding1()
+        # Copy building
+        self.ut.copyFloor()
+        # Delete Building
+        self.ut.deleteFloor()
 
 

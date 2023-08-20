@@ -23,21 +23,7 @@ class TestDeleteSite:
 
         # Login to the velocity app
         self.ut.login()
-        # Click on the created site
-        self.home.clickSite()
-        # wait until the page is loaded successfully
-        self.wait.until(EC.title_contains("Sites"))
-        assert "Atlona Velocity | Sites" in self.driver.title
-
-        # Click on the delete site button
-        self.sites.clickDeleteButton()
-        # Verify if the confirmation popup is visible
-        assert self.confirm.visibilityOfConfirmPopup() is True
-        self.confirm.clickSubmit()
-        time.sleep(1)
-        # wait until the page is loaded successfully
-        self.wait.until(EC.title_contains("Site Add"))
-        assert "Atlona Velocity | Site Add" in self.driver.title
-
-
-
+        # Navigate to sites page
+        self.home.navToSitesPage()
+        # Delete site
+        self.ut.deleteSite()

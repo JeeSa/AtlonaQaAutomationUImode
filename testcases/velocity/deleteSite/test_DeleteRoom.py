@@ -33,39 +33,14 @@ class TestDeleteRoom:
 
         # Login to the velocity app
         self.ut.login()
-        # Click on the created site
-        self.home.clickSite()
-        # wait until the page is loaded successfully
-        self.wait.until(EC.title_contains("Sites"))
-        assert "Atlona Velocity | Sites" in self.driver.title
-
-        # Click on the view button
-        self.sites.clickView()
-        # wait until the page is loaded successfully
-        self.wait.until(EC.title_contains("Buildings"))
-        assert "Atlona Velocity | Buildings" in self.driver.title
-        # Click on the view button
-        self.buildings.clickViewAllRooms1()
-        # wait until the page is loaded successfully
-        self.wait.until(EC.title_contains("Room List"))
-        assert "Atlona Velocity | Room List" in self.driver.title
-
-        # Click on the more option button
-        self.roomList.clickMoreButton1()
-        time.sleep(2)
-        # Click on the add new room option
-        self.flrHamburger.clickAddRoom()
-        time.sleep(1)
-        # wait until the page is loaded successfully
-        self.wait.until(EC.title_contains("Room Modify"))
-        assert "Atlona Velocity | Room Modify" in self.driver.title
-
-        # Add a new room
-        self.addRoom.createRoom("New Test Room")
-        time.sleep(1)
-        # wait until the page is loaded successfully
-        self.wait.until(EC.title_contains("Room Modify Devices"))
-        assert "Atlona Velocity | Room Modify Devices" in self.driver.title
+        # Navigate to sites page
+        self.home.navToSitesPage()
+        # Navigate to Buildings Page
+        self.sites.navToBuildingsPage()
+        # Navigate to Room list page of 1st Building
+        self.buildings.navToRoomListOfBuilding1()
+        # create a new room
+        self.ut.addRoom("New Test Room")
 
         self.modifyDevices.clickBuildingInBreadcrumb()
         # wait until the page is loaded successfully
@@ -75,13 +50,7 @@ class TestDeleteRoom:
         assert self.roomList.visibilityOfRoom2() is True
 
         # Delete the newly added room
-        self.roomList.clickDeleteBtnRoom2()
-        # Verify if the confirmation popup is visible
-        assert self.confirm.visibilityOfConfirmPopup() is True
-        self.confirm.clickSubmit()
-        time.sleep(1)
-        # Verify if the delete success popup is visible
-        assert self.roomList.visibilityOfDeleteSuccessPopup() is True
+        self.ut.deleteRoom()
 
 
 

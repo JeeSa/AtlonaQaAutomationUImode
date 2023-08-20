@@ -25,24 +25,10 @@ class TestDeleteBuilding:
 
         # Login to the velocity app
         self.ut.login()
-        # Click on the created site
-        self.home.clickSite()
-        # wait until the page is loaded successfully
-        self.wait.until(EC.title_contains("Sites"))
-        assert "Atlona Velocity | Sites" in self.driver.title
-
-        # Click on the view button
-        self.sites.clickView()
-        # wait until the page is loaded successfully
-        self.wait.until(EC.title_contains("Buildings"))
-        assert "Atlona Velocity | Buildings" in self.driver.title
-
+        # Navigate to sites page
+        self.home.navToSitesPage()
+        # Navigate to buildings page
+        self.sites.navToBuildingsPage()
         # Click on the building delete button
-        self.buildings.clickDeleteBuilding1()
-        # Verify if the confirmation popup is visible
-        assert self.confirm.visibilityOfConfirmPopup() is True
-        self.confirm.clickSubmit()
-        time.sleep(1)
-        # Verify if the delete success popup is visible
-        assert self.buildings.visibilityOfDeleteSuccessPopup() is True
+        self.ut.deleteBuilding()
 

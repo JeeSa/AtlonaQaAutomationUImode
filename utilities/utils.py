@@ -4,6 +4,7 @@ from pages.velocity.Home_Page import HomePage
 from pages.velocity.menus.FloorHamburger_Menu import FloorHamburgerMenu
 from pages.velocity.popups.AddOrImport_popup import AddOrImportPopup
 from pages.velocity.popups.AddSite_popup import AddSitePopup
+from pages.velocity.popups.Confirm_popup import ConfirmPopup
 from pages.velocity.security.Login_Page import LoginPage
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -308,3 +309,94 @@ class Utils:
         home.clickNavBar()
         # Verify if the sidebar is visible
         assert home.visibilityOfSidebarMenu() is True
+
+    def deleteSite(self):
+        sites = SitesPage(self.driver, self.wait)
+        confirm = ConfirmPopup(self.driver, self.wait)
+
+        # wait until the sites page is loaded successfully
+        self.wait.until(EC.title_contains("Sites"))
+        assert "Atlona Velocity | Sites" in self.driver.title
+
+        # Click on the delete site button
+        sites.clickDeleteButton()
+        # Verify if the confirmation popup is visible
+        assert confirm.visibilityOfConfirmPopup() is True
+        confirm.clickSubmit()
+        time.sleep(1)
+        # wait until the page is loaded successfully
+        self.wait.until(EC.title_contains("Site Add"))
+        assert "Atlona Velocity | Site Add" in self.driver.title
+
+    def deleteBuilding(self):
+        buildings = BuildingsPage(self.driver, self.wait)
+        confirm = ConfirmPopup(self.driver, self.wait)
+
+        # wait until the page is loaded successfully
+        self.wait.until(EC.title_contains("Buildings"))
+        assert "Atlona Velocity | Buildings" in self.driver.title
+
+        # Click on the building delete button
+        buildings.clickDeleteBuilding1()
+        # Verify if the confirmation popup is visible
+        assert confirm.visibilityOfConfirmPopup() is True
+        confirm.clickSubmit()
+        time.sleep(1)
+        # Verify if the delete success popup is visible
+        assert buildings.visibilityOfDeleteSuccessPopup() is True
+
+    def deleteFloor(self):
+        roomList = RoomListPage(self.driver, self.wait)
+        flrHamburger = FloorHamburgerMenu(self.driver, self.wait)
+        confirm = ConfirmPopup(self.driver, self.wait)
+
+        # wait until the page is loaded successfully
+        self.wait.until(EC.title_contains("Room List"))
+        assert "Atlona Velocity | Room List" in self.driver.title
+
+        # Click on the more option button
+        roomList.clickMoreButton1()
+        time.sleep(1)
+        # Click on the delete floor button
+        flrHamburger.clickDeleteFloor()
+        # Verify if the confirmation popup is visible
+        assert confirm.visibilityOfConfirmPopup() is True
+        confirm.clickSubmit()
+        time.sleep(1)
+        # Verify if the delete success popup is visible
+        assert roomList.visibilityOfDeleteSuccessPopup() is True
+
+    def deleteRoom(self):
+        roomList = RoomListPage(self.driver, self.wait)
+        confirm = ConfirmPopup(self.driver, self.wait)
+
+        # wait until the page is loaded successfully
+        self.wait.until(EC.title_contains("Room List"))
+        assert "Atlona Velocity | Room List" in self.driver.title
+
+        # Delete the newly added room
+        roomList.clickDeleteBtnRoom2()
+        # Verify if the confirmation popup is visible
+        assert confirm.visibilityOfConfirmPopup() is True
+        confirm.clickSubmit()
+        time.sleep(1)
+        # Verify if the delete success popup is visible
+        assert roomList.visibilityOfDeleteSuccessPopup() is True
+
+    def deleteDevice(self):
+        modifyDevices = RoomModifyDevicesPage(self.driver, self.wait)
+        confirm = ConfirmPopup(self.driver, self.wait)
+
+        # wait until the modify room page is loaded successfully
+        self.wait.until(EC.title_contains("Room Modify Devices"))
+        assert "Atlona Velocity | Room Modify Devices" in self.driver.title
+
+        # Click on the delete device option
+        modifyDevices.clickDeleteDevice()
+        # Verify if the confirmation popup is visible
+        assert confirm.visibilityOfConfirmPopup() is True
+        confirm.clickSubmit()
+        time.sleep(1)
+        # wait until the page is loaded successfully
+        self.wait.until(EC.title_contains("Room Modify Devices"))
+        assert "Atlona Velocity | Room Modify Devices" in self.driver.title
