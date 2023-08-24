@@ -4,6 +4,7 @@ import pytest
 from pages.velocity.sites.Buildings_Page import BuildingsPage
 from pages.velocity.Home_Page import HomePage
 from pages.velocity.sites.RoomList_Page import RoomListPage
+from pages.velocity.sites.RoomModifyDevices_Page import RoomModifyDevicesPage
 from pages.velocity.sites.Sites_Page import SitesPage
 from utilities.utils import Utils
 from selenium.webdriver.support import expected_conditions as EC
@@ -19,6 +20,7 @@ class TestAddDevices:
         self.sites = SitesPage(self.driver, self.wait)
         self.buildings = BuildingsPage(self.driver, self.wait)
         self.roomList = RoomListPage(self.driver, self.wait)
+        self.modifyDevices = RoomModifyDevicesPage(self.driver, self.wait)
 
     def test_addDevices(self):
 
@@ -34,3 +36,6 @@ class TestAddDevices:
         self.roomList.navToRModDevOfF1R1()
         # Add technologies to the room
         self.ut.addTechnology("AT-VTP-800-BL")
+        # Verify if the added technology is visible
+        assert self.modifyDevices.visibilityOfVTPDevice() is True
+

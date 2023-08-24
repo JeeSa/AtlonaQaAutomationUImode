@@ -78,6 +78,6 @@ class TestAddMeetingRoomWithCaInt:
         self.techList.clickCloseList()
         time.sleep(2)
         # Verify if the added technology is visible
-        assert self.modifyDevices.visibilityOfDevice_1() is True
+        assert self.modifyDevices.visibilityOfVTPDevice() is True
 
 

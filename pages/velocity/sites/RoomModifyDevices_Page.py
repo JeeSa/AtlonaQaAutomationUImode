@@ -11,7 +11,7 @@ class RoomModifyDevicesPage:
 
     # Locators
     ADD_TECHNOLOGY_BUTTON = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div/div/div[1]/div/div[1]/div[3]/span/button[3]"
-    DEVICE_1 = "//h4[contains(text(),'Atlona Velocity 8\" Touch Panel - Black 1')]"
+    VTP_DEVICE = "//h4[contains(text(),'Atlona Velocity 8\" Touch Panel - Black 1')]"
     BUILDING_BREADCRUMB = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div/div/div[1]/div/div[1]/div[2]/span/div/span[2]/ol/li[3]/a"
     EDIT_ROOM_DEVICES = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div/div/div[2]/div/span/span[1]/div/div/div[1]/div/span/table/tr/td/ul/li[1]/button"
     COPY_ROOM_DEVICE = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div/div/div[2]/div/span/span[1]/div/div/div[1]/div/span/table/tr/td/ul/li[3]/button"
@@ -20,6 +20,7 @@ class RoomModifyDevicesPage:
     BUILDING_NAME_BREADCRUMB = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div/div/div[1]/div/div[1]/div[2]/span/div/span[2]/ol/li[3]/a"
     DEVICE1_NAME = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div/div/div[2]/div/span/span[1]/div/div/div[1]/div/h4"
     CUSTOM_UI_DESIGNER = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div/div/div[2]/div/span/span[1]/div/div/div[1]/div/span/table/tr/td/ul/li[2]/button"
+    IP = "//a[contains(text(),'10.20.40.82')]"
 
     # Get the location of add technology button
     def getAddTechnologyButton(self):
@@ -31,15 +32,15 @@ class RoomModifyDevicesPage:
         self.getAddTechnologyButton().click()
 
     # Get the location of added technology div
-    def getDevice_1(self):
+    def getVTPDevice(self):
         self.driver.implicitly_wait(10)
-        return self.driver.find_element(By.XPATH, self.DEVICE_1)
+        return self.driver.find_element(By.XPATH, self.VTP_DEVICE)
 
     # Visibility of added technology
-    def visibilityOfDevice_1(self):
+    def visibilityOfVTPDevice(self):
         # self.driver.implicitly_wait(10)
         time.sleep(3)
-        if self.getDevice_1().is_displayed():
+        if self.getVTPDevice().is_displayed():
             return True
         else:
             return False
@@ -134,3 +135,10 @@ class RoomModifyDevicesPage:
         # Verify if the copied device is visible
         assert self.visibilityOfDevice_2() is True
 
+    def getIp(self):
+        self.driver.implicitly_wait(10)
+        return self.driver.find_element(By.XPATH, self.IP)
+
+    def passIp(self):
+        ip = self.getIp().text
+        return ip

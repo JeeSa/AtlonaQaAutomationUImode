@@ -112,8 +112,6 @@ class Utils:
         flrHamburger.clickAddNewFloor()
         addFloor.createOneFloor(f_name)
         time.sleep(1)
-        # Verify if the added room is visible
-        assert roomList.visibilityOfFloor2() is True
 
     def addRoom(self, r_name):
         roomList = RoomListPage(self.driver, self.wait)
@@ -150,8 +148,6 @@ class Utils:
         # Click on the close button
         techList.clickCloseList()
         time.sleep(2)
-        # Verify if the added technology is visible
-        assert modifyDevices.visibilityOfDevice_1() is True
 
     def editSiteName(self, s_name):
         sites = SitesPage(self.driver, self.wait)
@@ -400,3 +396,22 @@ class Utils:
         # wait until the page is loaded successfully
         self.wait.until(EC.title_contains("Room Modify Devices"))
         assert "Atlona Velocity | Room Modify Devices" in self.driver.title
+
+    def assignIPtoDevice(self, ip):
+        confEquip = ConfigureEquipmentPage(self.driver, self.wait)
+        modifyDevices = RoomModifyDevicesPage(self.driver, self.wait)
+
+        # Verify if the added technology is visible
+        assert confEquip.visibilityOfConfHeading() is True
+
+        # Edit device alias
+        confEquip.clearIP()
+        confEquip.enterIP(ip)
+        confEquip.clickSave()
+        time.sleep(1)
+        confEquip.clickClose()
+        time.sleep(1)
+        actual_ip = modifyDevices.passIp()
+        # Check that the edited name is showing after editing
+        assert actual_ip == ip
+
