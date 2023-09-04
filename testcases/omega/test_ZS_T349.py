@@ -1,6 +1,6 @@
 import pytest
 
-from pages.products_card.OMNI_PS62_card import OMNI_PS62_card
+from pages.products_card.OME_MH21_CP_card import OME_MH21_CP_card
 from pages.velocity.Home_Page import HomePage
 from pages.velocity.sites.Buildings_Page import BuildingsPage
 from pages.velocity.sites.RoomList_Page import RoomListPage
@@ -10,7 +10,7 @@ from utilities.utils import Utils
 
 
 @pytest.mark.usefixtures("setup")
-class TestZS_T307:
+class TestZS_T349:
     @pytest.fixture(autouse=True)
     def class_setup(self):
         self.ut = Utils(self.driver, self.wait)
@@ -19,9 +19,9 @@ class TestZS_T307:
         self.buildings = BuildingsPage(self.driver, self.wait)
         self.roomList = RoomListPage(self.driver, self.wait)
         self.modifyDevices = RoomModifyDevicesPage(self.driver, self.wait)
-        self.ps62 = OMNI_PS62_card(self.driver, self.wait)
+        self.mh21_cp = OME_MH21_CP_card(self.driver, self.wait)
 
-    def test_zs_t307(self):
+    def test_zs_t349(self):
         # Login to the velocity app
         self.ut.login()
         # Navigate to sites page
@@ -33,10 +33,10 @@ class TestZS_T307:
         # create a new room
         self.ut.addRoom("New Room for Omega")
         # Add technologies to the room
-        self.ut.addTechnology("AT-OME-PS62")
+        self.ut.addTechnology("AT-OME-MH21-CP")
         # Verify if the added technology is visible
-        assert self.ps62.visibilityOfPS62Device() is True
-        self.ps62.clickEdit()
-        self.ut.assignIPtoDevice("10.20.40.82")
+        assert self.mh21_cp.visibilityOfMH21CPDevice() is True
+        self.mh21_cp.clickEdit()
+        self.ut.assignIPtoDevice("10.20.40.111")
 
 

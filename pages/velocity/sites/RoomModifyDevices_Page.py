@@ -20,7 +20,7 @@ class RoomModifyDevicesPage:
     BUILDING_NAME_BREADCRUMB = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div/div/div[1]/div/div[1]/div[2]/span/div/span[2]/ol/li[3]/a"
     DEVICE1_NAME = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div/div/div[2]/div/span/span[1]/div/div/div[1]/div/h4"
     CUSTOM_UI_DESIGNER = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div/div/div[2]/div/span/span[1]/div/div/div[1]/div/span/table/tr/td/ul/li[2]/button"
-    IP = "//a[contains(text(),'10.20.40.82')]"
+    IP = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div/div/div[2]/div/span/span[1]/div/div/div[1]/div/a"
 
     # Get the location of add technology button
     def getAddTechnologyButton(self):
