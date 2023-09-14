@@ -142,3 +142,14 @@ class RoomModifyDevicesPage:
     def passIp(self):
         ip = self.getIp().text
         return ip
+
+    def navToCUIScreen(self):
+        self.wait.until(EC.title_contains("Room Modify Devices"))
+        assert "Atlona Velocity | Room Modify Devices" in self.driver.title
+
+        # Click on the add technology button
+        self.clickCustomUI()
+        # wait until the  page is loaded successfully
+        self.wait.until(EC.title_contains("Room Modify Screens"))
+        assert "Atlona Velocity | Room Modify Screens" in self.driver.title
+

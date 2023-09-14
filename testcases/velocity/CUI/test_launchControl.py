@@ -31,33 +31,16 @@ class TestLaunchControl:
 
         # Login to the velocity app
         self.ut.login()
-        # Click on the created site
-        self.home.clickSite()
-        # wait until the page is loaded successfully
-        self.wait.until(EC.title_contains("Sites"))
-        assert "Atlona Velocity | Sites" in self.driver.title
-
-        # Click on the view button
-        self.sites.clickView()
-        # wait until the page is loaded successfully
-        self.wait.until(EC.title_contains("Buildings"))
-        assert "Atlona Velocity | Buildings" in self.driver.title
-        # Click on the view button
-        self.buildings.clickViewAllRooms1()
-        # wait until the page is loaded successfully
-        self.wait.until(EC.title_contains("Room List"))
-        assert "Atlona Velocity | Room List" in self.driver.title
-        # Click on the edit technology button
-        self.roomList.clickEditTechnology1Button()
-        # wait until the  page is loaded successfully
-        self.wait.until(EC.title_contains("Room Modify Devices"))
-        assert "Atlona Velocity | Room Modify Devices" in self.driver.title
-
-        # Click on the add technology button
-        self.modifyDevices.clickCustomUI()
-        # wait until the  page is loaded successfully
-        self.wait.until(EC.title_contains("Room Modify Screens"))
-        assert "Atlona Velocity | Room Modify Screens" in self.driver.title
+        # Navigate to sites page
+        self.home.navToSitesPage()
+        # Navigate to Buildings Page
+        self.sites.navToBuildingsPage()
+        # Navigate to Room list page of 1st Building
+        self.buildings.navToRoomListOfBuilding1()
+        # Navigate to Room modify devices of floor 1 room 1
+        self.roomList.navToRModDevOfF1R1()
+        # Navigate to Custom UI page
+        self.modifyDevices.navToCUIScreen()
 
         # Store the ID of the original window
         main_window = self.driver.current_window_handle

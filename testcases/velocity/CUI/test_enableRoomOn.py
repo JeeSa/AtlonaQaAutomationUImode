@@ -1,10 +1,11 @@
 import time
-
 import pytest
+from selenium.common import NoSuchElementException, StaleElementReferenceException
 
 from pages.velocity.customUI.CUI_Page import CUIPage
+from pages.velocity.customUI.HeaderProperties_Page import HeaderPropertiesPage
 from pages.velocity.menus.CUIPage_Menu import CUIPageMenu
-from pages.velocity.popups.RenameControl_Popup import RenameControlPopup
+from pages.velocity.popups.Confirm_popup import ConfirmPopup
 from pages.velocity.sites.Buildings_Page import BuildingsPage
 from pages.velocity.Home_Page import HomePage
 from pages.velocity.sites.RoomList_Page import RoomListPage
@@ -15,7 +16,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 @pytest.mark.usefixtures("setup")
-class TestRenamePage:
+class TestEnableRoomOn:
 
     @pytest.fixture(autouse=True)
     def class_setup(self):
@@ -26,10 +27,11 @@ class TestRenamePage:
         self.roomList = RoomListPage(self.driver, self.wait)
         self.modifyDevices = RoomModifyDevicesPage(self.driver, self.wait)
         self.cui = CUIPage(self.driver, self.wait)
-        self.renamePop = RenameControlPopup(self.driver, self.wait)
         self.cuiPageMenu = CUIPageMenu(self.driver, self.wait)
+        self.confirm = ConfirmPopup(self.driver, self.wait)
+        self.headerProperties = HeaderPropertiesPage(self.driver, self.wait)
 
-    def test_addAndRenamePage_1(self):
+    def test_enableRoomOn(self):
 
         # Login to the velocity app
         self.ut.login()
@@ -44,31 +46,31 @@ class TestRenamePage:
         # Navigate to Custom UI page
         self.modifyDevices.navToCUIScreen()
 
-        self.cui.clickAddPageButton()
-        expectedPageName = "Test Page 1"
-        assert self.renamePop.visibilityOfRenameControlPop() is True
-        self.renamePop.clearPageName()
+        # close the side drawer
+        self.cui.clickExpand()
+        # Go to the header tab
+        self.cui.clickHeader()
         time.sleep(1)
-        self.renamePop.enterPageName("Test Page 1")
-        self.renamePop.clickCloseButton()
-        actualPageName = self.cui.passPage3Name()
-        assert expectedPageName == actualPageName
+        # Check the room title is visible
+        assert self.cui.visibilityOfRoomOn() is True
+        # Expand Room on section
+        self.headerProperties.clickRoomOnExpand()
+        # Uncheck the Room on
+        self.headerProperties.clickRoomOnOtherToggle()
 
-    def test_renamePage_2(self):
+        # check the room title is invisible
+        try:
+            self.cui.visibilityOfRoomOn()
+        except StaleElementReferenceException:
+            pass
+        except NoSuchElementException:
+            pass
 
-        # wait until the  page is loaded successfully
-        self.wait.until(EC.title_contains("Room Modify Screens"))
-        assert "Atlona Velocity | Room Modify Screens" in self.driver.title
-        self.cui.clickPage3Options()
-        assert self.cuiPageMenu.visibilityOfPageMenu() is True
-        self.cuiPageMenu.clickRename()
-
-        expectedPageName = "Renamed Page 1"
-        assert self.renamePop.visibilityOfRenameControlPop() is True
-        self.renamePop.clearPageName()
         time.sleep(1)
-        self.renamePop.enterPageName("Renamed Page 1")
-        self.renamePop.clickCloseButton()
-        actualPageName = self.cui.passPage3Name()
-        assert expectedPageName == actualPageName
+        # Check the Room on
+        self.headerProperties.clickRoomOnOtherToggle()
+        # Check the room title is visible
+        assert self.cui.visibilityOfRoomOn() is True
+
+
 

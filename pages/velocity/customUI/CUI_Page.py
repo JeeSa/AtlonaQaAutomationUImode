@@ -1,6 +1,7 @@
 import time
 
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
 
 
 class CUIPage:
@@ -18,6 +19,14 @@ class CUIPage:
     ROOM_TECHNOLOGY = "//span[contains(text(),'settings_input_hdmi')]"
     VARIABLES = "//span[contains(text(),'code')]"
     ROOM_OPTION = "//span[contains(text(),'tune')]"
+    EXPAND_CLOSE = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[1]/div[1]/span"
+    HEADER_TAB = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[3]/div[2]/div[2]/div/div/div/div[1]/button[2]"
+    ROOM_TITLE = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[2]/div[2]/div[1]/div/div/div[2]"
+    HEADER_ICONS = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[2]/div[2]/div[1]/div/div/div[1]/span"
+    ROOM_ON = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[2]/div[2]/div[1]/div/div/div[1]/span/span/div/div[3]"
+    ROOM_OFF = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[2]/div[2]/div[1]/div/div/div[1]/span/span/div/div[4]"
+    NAVIGATE = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[2]/div[2]/div[1]/div/div/div[1]/span/span/div/div[2]"
+    HOME = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[2]/div[2]/div[1]/div/div/div[1]/span/span/div/div[1]"
 
     # Get the location of add technology button
     def getAddPageButton(self):
@@ -97,3 +106,89 @@ class CUIPage:
     # Click on the add technology button
     def clickRoomOption(self):
         self.getRoomOption().click()
+
+    def getExpand(self):
+        self.driver.implicitly_wait(10)
+        return self.driver.find_element(By.XPATH, self.EXPAND_CLOSE)
+
+    def clickExpand(self):
+        self.getExpand().click()
+
+    def getHeader(self):
+        self.driver.implicitly_wait(10)
+        return self.driver.find_element(By.XPATH, self.HEADER_TAB)
+
+    def clickHeader(self):
+        self.getHeader().click()
+
+    def getRoomTitle(self):
+        self.driver.implicitly_wait(10)
+        return self.driver.find_element(By.XPATH, self.ROOM_TITLE)
+
+    # Visibility of added technology
+    def visibilityOfRoomtitle(self):
+        self.driver.implicitly_wait(10)
+        if self.getRoomTitle().is_displayed():
+            return True
+        else:
+            return False
+
+    def getHeaderIcons(self):
+        self.driver.implicitly_wait(10)
+        return self.driver.find_element(By.XPATH, self.HEADER_ICONS)
+
+    # Visibility of added technology
+    def visibilityOfHeaderIcons(self):
+        self.driver.implicitly_wait(10)
+        if self.getHeaderIcons().is_displayed():
+            return True
+        else:
+            return False
+
+    def getRoomOn(self):
+        self.driver.implicitly_wait(10)
+        return self.driver.find_element(By.XPATH, self.ROOM_ON)
+
+    # Visibility of added technology
+    def visibilityOfRoomOn(self):
+        self.driver.implicitly_wait(10)
+        if self.getRoomOn().is_displayed():
+            return True
+        else:
+            return False
+
+    def getRoomOff(self):
+        self.driver.implicitly_wait(10)
+        return self.driver.find_element(By.XPATH, self.ROOM_OFF)
+
+    # Visibility of added technology
+    def visibilityOfRoomOff(self):
+        self.driver.implicitly_wait(10)
+        if self.getRoomOff().is_displayed():
+            return True
+        else:
+            return False
+
+    def getNavigate(self):
+        self.driver.implicitly_wait(10)
+        return self.driver.find_element(By.XPATH, self.NAVIGATE)
+
+    # Visibility of added technology
+    def visibilityOfNavigate(self):
+        self.driver.implicitly_wait(10)
+        if self.getNavigate().is_displayed():
+            return True
+        else:
+            return False
+
+    def getHome(self):
+        self.driver.implicitly_wait(10)
+        return self.driver.find_element(By.XPATH, self.HOME)
+
+    # Visibility of added technology
+    def visibilityOfHome(self):
+        self.driver.implicitly_wait(10)
+        if self.getHome().is_displayed():
+            return True
+        else:
+            return False
