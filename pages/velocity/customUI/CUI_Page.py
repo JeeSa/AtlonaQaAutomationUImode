@@ -27,6 +27,8 @@ class CUIPage:
     ROOM_OFF = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[2]/div[2]/div[1]/div/div/div[1]/span/span/div/div[4]"
     NAVIGATE = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[2]/div[2]/div[1]/div/div/div[1]/span/span/div/div[2]"
     HOME = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[2]/div[2]/div[1]/div/div/div[1]/span/span/div/div[1]"
+    MACROS = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[2]/div[2]/div[1]/div/div/div[1]/span/span/div/div[5]"
+    HELP = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[2]/div[2]/div[1]/div/div/div[1]/span/span/div/div[6]"
 
     # Get the location of add technology button
     def getAddPageButton(self):
@@ -189,6 +191,30 @@ class CUIPage:
     def visibilityOfHome(self):
         self.driver.implicitly_wait(10)
         if self.getHome().is_displayed():
+            return True
+        else:
+            return False
+
+    def getMacros(self):
+        self.driver.implicitly_wait(10)
+        return self.driver.find_element(By.XPATH, self.MACROS)
+
+    # Visibility of added technology
+    def visibilityOfMacros(self):
+        self.driver.implicitly_wait(10)
+        if self.getMacros().is_displayed():
+            return True
+        else:
+            return False
+
+    def getHelp(self):
+        self.driver.implicitly_wait(10)
+        return self.driver.find_element(By.XPATH, self.HELP)
+
+    # Visibility of added technology
+    def visibilityOfHelp(self):
+        self.driver.implicitly_wait(10)
+        if self.getHelp().is_displayed():
             return True
         else:
             return False

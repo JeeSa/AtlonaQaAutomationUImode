@@ -19,7 +19,10 @@ class HeaderPropertiesPage:
     NAVIGATION_OTHER_TOGGLE = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[3]/div[2]/div[2]/div/div/div/div[3]/div[2]/div/div/div[4]/div/div/div/div[2]/span/span/div/input"
     HOME_EXPAND = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[3]/div[2]/div[2]/div/div/div/div[3]/div[2]/div/div/div[6]/span/span/button"
     HOME_OTHER_TOGGLE = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[3]/div[2]/div[2]/div/div/div/div[3]/div[2]/div/div/div[6]/div/div/div/div[2]/span/span/div/input"
-
+    MACRO_DRAWER_EXPAND = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[3]/div[2]/div[2]/div/div/div/div[3]/div[2]/div/div/div[7]/span/span/button"
+    MACRO_DRAWER_OTHER_TOGGLE = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[3]/div[2]/div[2]/div/div/div/div[3]/div[2]/div/div/div[7]/div/div/div[1]/div[2]/span/span/div/input"
+    ROOM_SUPPORT_HELP_EXPAND = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[3]/div[2]/div[2]/div/div/div/div[3]/div[2]/div/div/div[9]/span/span/button"
+    ROOM_SUPPORT_HELP_OTHER_TOGGLE = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[3]/div[2]/div[2]/div/div/div/div[3]/div[2]/div/div/div[9]/div/div/div/div[2]/span/span/div/input"
 
     def getRoomTitleToggle(self):
         self.driver.implicitly_wait(10)
@@ -90,3 +93,39 @@ class HeaderPropertiesPage:
 
     def clickHomeOtherToggle(self):
         self.getHomeOtherToggle().click()
+
+    def getMacroDrawerExpand(self):
+        self.driver.implicitly_wait(10)
+        return self.driver.find_element(By.XPATH, self.MACRO_DRAWER_EXPAND)
+
+    def clickMacroDrawerExpand(self):
+        self.driver.execute_script("arguments[0].scrollIntoView()", self.getMacroDrawerExpand())
+        self.driver.implicitly_wait(10)
+        self.getMacroDrawerExpand().click()
+
+    def getMacroDrawerOtherToggle(self):
+        self.driver.implicitly_wait(10)
+        return self.driver.find_element(By.XPATH, self.MACRO_DRAWER_OTHER_TOGGLE)
+
+    def clickMacroDrawerOtherToggle(self):
+        self.driver.execute_script("arguments[0].scrollIntoView()", self.getMacroDrawerOtherToggle())
+        self.driver.implicitly_wait(10)
+        self.getMacroDrawerOtherToggle().click()
+
+    def getRoomSupportHelpExpand(self):
+        self.driver.implicitly_wait(10)
+        return self.driver.find_element(By.XPATH, self.ROOM_SUPPORT_HELP_EXPAND)
+
+    def clickRoomSupportHelpExpand(self):
+        self.driver.execute_script("arguments[0].scrollIntoView()", self.getRoomSupportHelpExpand())
+        self.driver.implicitly_wait(10)
+        self.getRoomSupportHelpExpand().click()
+
+    def getRoomSupportHelpOtherToggle(self):
+        self.driver.implicitly_wait(10)
+        return self.driver.find_element(By.XPATH, self.ROOM_SUPPORT_HELP_OTHER_TOGGLE)
+
+    def clickRoomSupportHelpOtherToggle(self):
+        self.driver.execute_script("arguments[0].scrollIntoView()", self.getRoomSupportHelpOtherToggle())
+        self.driver.implicitly_wait(10)
+        self.getRoomSupportHelpOtherToggle().click()

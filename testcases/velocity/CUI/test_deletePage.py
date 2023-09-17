@@ -41,6 +41,7 @@ class TestDeletePage:
         self.roomList.navToRModDevOfF1R1()
         # Navigate to Custom UI page
         self.modifyDevices.navToCUIScreen()
+        time.sleep(1)
 
         self.cui.clickPage3Options()
         assert self.cuiPageMenu.visibilityOfPageMenu() is True

@@ -1,9 +1,11 @@
 import time
 import pytest
+from selenium.common import NoSuchElementException, StaleElementReferenceException
+
 from pages.velocity.customUI.CUI_Page import CUIPage
+from pages.velocity.customUI.HeaderProperties_Page import HeaderPropertiesPage
 from pages.velocity.menus.CUIPage_Menu import CUIPageMenu
 from pages.velocity.popups.Confirm_popup import ConfirmPopup
-from pages.velocity.popups.Variables_popup import VariablesPopup
 from pages.velocity.sites.Buildings_Page import BuildingsPage
 from pages.velocity.Home_Page import HomePage
 from pages.velocity.sites.RoomList_Page import RoomListPage
@@ -14,7 +16,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 @pytest.mark.usefixtures("setup")
-class TestVariables:
+class TestEnableHelp:
 
     @pytest.fixture(autouse=True)
     def class_setup(self):
@@ -27,9 +29,9 @@ class TestVariables:
         self.cui = CUIPage(self.driver, self.wait)
         self.cuiPageMenu = CUIPageMenu(self.driver, self.wait)
         self.confirm = ConfirmPopup(self.driver, self.wait)
-        self.variable = VariablesPopup(self.driver, self.wait)
+        self.headerProperties = HeaderPropertiesPage(self.driver, self.wait)
 
-    def test_variables(self):
+    def test_enableHelp(self):
 
         # Login to the velocity app
         self.ut.login()
@@ -44,8 +46,31 @@ class TestVariables:
         # Navigate to Custom UI page
         self.modifyDevices.navToCUIScreen()
 
-        self.cui.clickVariables()
-        assert self.variable.visibilityOfVariablesPop() is True
+        # close the side drawer
+        self.cui.clickExpand()
+        # Go to the header tab
+        self.cui.clickHeader()
         time.sleep(1)
-        self.variable.clickCloseButton()
+        # Check the room title is visible
+        assert self.cui.visibilityOfHelp() is True
+        # Expand Room on section
+        self.headerProperties.clickRoomSupportHelpExpand()
+        # Uncheck the Room on
+        self.headerProperties.clickRoomSupportHelpOtherToggle()
+
+        # check the room title is invisible
+        try:
+            self.cui.visibilityOfHelp()
+        except StaleElementReferenceException:
+            pass
+        except NoSuchElementException:
+            pass
+
+        time.sleep(1)
+        # Check the Room on
+        self.headerProperties.clickRoomSupportHelpOtherToggle()
+        # Check the room title is visible
+        assert self.cui.visibilityOfHelp() is True
+
+
 
