@@ -10,7 +10,7 @@ class VariablesPopup:
         self.wait = wait
 
     # Locators
-    CLOSE_BUTTON = "/html/body/div[6]/div/div[1]/div/div/div/div[1]/div/button"
+    CLOSE_BUTTON = "NavigationClose"
     POPUP_NAME = "//h1[contains(text(),'Variables')]"
 
     # Get the location of add technology button
@@ -30,7 +30,7 @@ class VariablesPopup:
     # Get the location of add technology button
     def getCloseButton(self):
         self.driver.implicitly_wait(10)
-        return self.driver.find_element(By.XPATH, self.CLOSE_BUTTON)
+        return self.driver.find_element(By.ID, self.CLOSE_BUTTON)
 
     # Click on the add technology button
     def clickCloseButton(self):
