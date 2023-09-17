@@ -37,6 +37,6 @@ class TestZS_T344:
         # Verify if the added technology is visible
         assert self.ps84.visibilityOfPS84Device() is True
         self.ps84.clickEdit()
-        self.ut.assignIPtoDevice("10.20.40.00")
+        self.ut.assignIPtoDevice("10.20.20.48")
 
 

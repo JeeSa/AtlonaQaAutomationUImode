@@ -38,6 +38,6 @@ class TestZS_T347:
         # Verify if the added technology is visible
         assert self.sw32.visibilityOfSW32Device() is True
         self.sw32.clickEdit()
-        self.ut.assignIPtoDevice("10.20.40.00")
+        self.ut.assignIPtoDevice("10.20.40.105")
 
 

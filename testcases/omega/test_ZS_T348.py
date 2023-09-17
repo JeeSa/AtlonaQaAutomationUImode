@@ -37,6 +37,6 @@ class TestZS_T348:
         # Verify if the added technology is visible
         assert self.sw21txwpc.visibilityOfSW21TXWPCDevice() is True
         self.sw21txwpc.clickEdit()
-        self.ut.assignIPtoDevice("10.20.40.00")
+        self.ut.assignIPtoDevice("10.20.40.78")
 
 
