@@ -29,6 +29,8 @@ class CUIPage:
     HOME = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[2]/div[2]/div[1]/div/div/div[1]/span/span/div/div[1]"
     MACROS = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[2]/div[2]/div[1]/div/div/div[1]/span/span/div/div[5]"
     HELP = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[2]/div[2]/div[1]/div/div/div[1]/span/span/div/div[6]"
+    GRIDLINE_BUTTON = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[2]/div[1]/div/div[1]/span[14]/span[2]/button"
+    GRIDLINES = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[2]/div[2]/div[1]/div/div/div[3]/div/div[7]"
 
     # Get the location of add technology button
     def getAddPageButton(self):
@@ -215,6 +217,25 @@ class CUIPage:
     def visibilityOfHelp(self):
         self.driver.implicitly_wait(10)
         if self.getHelp().is_displayed():
+            return True
+        else:
+            return False
+
+    def getGridlineButton(self):
+        self.driver.implicitly_wait(10)
+        return self.driver.find_element(By.XPATH, self.GRIDLINE_BUTTON)
+
+    def clickGridlineButton(self):
+        self.getGridlineButton().click()
+
+    def getGridlines(self):
+        self.driver.implicitly_wait(10)
+        return self.driver.find_element(By.XPATH, self.GRIDLINES)
+
+    # Visibility of added technology
+    def visibilityOfGridlines(self):
+        self.driver.implicitly_wait(10)
+        if self.getGridlines().is_displayed():
             return True
         else:
             return False
