@@ -1,5 +1,6 @@
 import time
 
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 
@@ -31,6 +32,8 @@ class CUIPage:
     HELP = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[2]/div[2]/div[1]/div/div/div[1]/span/span/div/div[6]"
     GRIDLINE_BUTTON = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[2]/div[1]/div/div[1]/span[14]/span[2]/button"
     GRIDLINES = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[2]/div[2]/div[1]/div/div/div[3]/div/div[7]"
+    LOCK_POSITION_BUTTON = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[2]/div[1]/div/div[1]/span[13]/span[2]/button"
+    RENEW_BUTTON = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div/div[2]/div[2]/div[1]/div/div/div[3]/div/div/div/div/div/div"
 
     # Get the location of add technology button
     def getAddPageButton(self):
@@ -239,3 +242,19 @@ class CUIPage:
             return True
         else:
             return False
+
+    def getLockPositionButton(self):
+        self.driver.implicitly_wait(10)
+        return self.driver.find_element(By.XPATH, self.LOCK_POSITION_BUTTON)
+
+    def clickLockPositionButton(self):
+        self.getLockPositionButton().click()
+
+    def getRenewButton(self):
+        self.driver.implicitly_wait(10)
+        return self.driver.find_element(By.XPATH, self.RENEW_BUTTON)
+
+    def dragRenewButton(self, x_axis, y_axis):
+        action = ActionChains(self.driver)
+        action.drag_and_drop_by_offset(self.getRenewButton(), x_axis, y_axis).perform()
+

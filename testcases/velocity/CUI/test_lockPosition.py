@@ -2,6 +2,7 @@ import time
 import pytest
 from selenium.common import NoSuchElementException, StaleElementReferenceException
 
+from pages.velocity.customUI.AddComponents_Page import AddComponentsPage
 from pages.velocity.customUI.CUI_Page import CUIPage
 from pages.velocity.menus.CUIPage_Menu import CUIPageMenu
 from pages.velocity.popups.Confirm_popup import ConfirmPopup
@@ -11,11 +12,12 @@ from pages.velocity.sites.RoomList_Page import RoomListPage
 from pages.velocity.sites.RoomModifyDevices_Page import RoomModifyDevicesPage
 from pages.velocity.sites.Sites_Page import SitesPage
 from utilities.utils import Utils
+from selenium.webdriver import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 
 
 @pytest.mark.usefixtures("setup")
-class TestGridlinesOnOff:
+class TestLockPosition:
 
     @pytest.fixture(autouse=True)
     def class_setup(self):
@@ -28,6 +30,7 @@ class TestGridlinesOnOff:
         self.cui = CUIPage(self.driver, self.wait)
         self.cuiPageMenu = CUIPageMenu(self.driver, self.wait)
         self.confirm = ConfirmPopup(self.driver, self.wait)
+        self.addComp = AddComponentsPage(self.driver, self.wait)
 
     def test_gridlinesOnOff(self):
 
@@ -43,21 +46,39 @@ class TestGridlinesOnOff:
         self.roomList.navToRModDevOfF1R1()
         # Navigate to Custom UI page
         self.modifyDevices.navToCUIScreen()
-
-        # close the side drawer
-        self.cui.clickGridlineButton()
-        # Check the gridlines are visible
-        assert self.cui.visibilityOfGridlines() is True
         time.sleep(1)
 
-        # click the gridlines button
-        self.cui.clickGridlineButton()
-        # check the gridlines are invisible
-        try:
-            self.cui.visibilityOfGridlines()
-        except StaleElementReferenceException:
-            pass
-        except NoSuchElementException:
-            pass
+        # click on the media expand
+        self.addComp.clickMediaExpand()
+        time.sleep(1)
+        # click on the icon button expand
+        self.addComp.clickIconButtonExpand()
+        time.sleep(1)
+        # click on the popular expand
+        self.addComp.clickPopularExpand()
+        time.sleep(1)
+        # click on the autorenew button
+        self.addComp.clickAutoRenewButton()
+        time.sleep(1)
+        initial_location = self.cui.getRenewButton().location
+        # print(initial_location)
 
+        # drag renew button to 120px on x-axis and 150px on y-axis
+        self.cui.dragRenewButton(120, 150)
+        time.sleep(1)
+        before_lock_location = self.cui.getRenewButton().location
+        # print(before_lock_location)
+        assert before_lock_location != initial_location
+
+        # Click on lock position
+        self.cui.clickLockPositionButton()
+        time.sleep(1)
+        # drag renew button to 120px on x-axis and 150px on y-axis
+        self.cui.dragRenewButton(160, 200)
+        after_lock_location = self.cui.getRenewButton().location
+        # print(after_lock_location)
+        assert after_lock_location == before_lock_location
+
+        # Click on lock position
+        self.cui.clickLockPositionButton()
 
