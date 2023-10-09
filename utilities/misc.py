@@ -1,4 +1,4 @@
 class Miscellaneous:
     def gateway(self):
-        gateway = "http://172.23.132.115//#/home"
+        gateway = "http://172.27.170.204//#/home"
         return gateway

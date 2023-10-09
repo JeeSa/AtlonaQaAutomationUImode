@@ -25,9 +25,9 @@ class TestDeleteCalenderIntegration:
     def test_deleteCalenderIntegration(self):
         # Login to the velocity app
         self.ut.login()
-        self.home.clickNavBar()
-        # Verify if the sidebar is visible
-        assert self.home.visibilityOfSidebarMenu() is True
+        # Open Nav bar
+        self.ut.openNavBar()
+        # Click Scheduling > Manage
         self.leftNav.clickScheduling()
         self.leftNav.clickSch_manage()
         # wait until the destination page is loaded successfully
@@ -36,6 +36,8 @@ class TestDeleteCalenderIntegration:
 
         beforeCount = self.caIntList.totalRowCount()
         time.sleep(1)
+    #   print(beforeCount)
+
         self.caIntList.clickDelete()
         # Verify if the confirmation popup is visible
         assert self.confirm.visibilityOfConfirmPopup() is True

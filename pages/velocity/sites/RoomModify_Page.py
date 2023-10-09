@@ -16,6 +16,7 @@ class RoomModifyPage:
     SAVE_CHANGES = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div[2]/div/div/div/div/div/div[3]/button"
     SAVE_FOR_MEETING_ROOM = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div[2]/div/div/div/div/div/div[4]/button/div/div"
     EDIT_SUCCESS_POPUP = "/html/body/div[1]/footer/div/div/div[1]/div/div"
+    CALENDAR_INTEGRATION_WARNING = "/html/body/div[1]/div[3]/main/div[1]/div/span/div/span/span/div[1]/div[2]/div/div/div/div/div/div[2]/div"
 
     # Get Login Button
     def getRoomModifyHelp(self):
@@ -116,7 +117,6 @@ class RoomModifyPage:
         # submit the floor name
         self.clickSaveMeeting()
 
-
     # Visibility of delete success
     def visibilityOfEditSuccessPopup(self):
         self.driver.execute_script("arguments[0].scrollIntoView()", self.getEditSuccess())
@@ -125,3 +125,11 @@ class RoomModifyPage:
             return True
         else:
             return False
+
+    def getCalWarning(self):
+        self.driver.implicitly_wait(10)
+        return self.driver.find_element(By.XPATH, self.CALENDAR_INTEGRATION_WARNING)
+
+    def passCalWarning(self):
+        warningText = self.getCalWarning().text
+        return warningText
